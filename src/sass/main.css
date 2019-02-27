@@ -1,6 +1,11 @@
+body {
+  background: url("../images/bg.png") 50% no-repeat;
+  background-size: cover;
+}
+
 .radio {
   width: 768px;
-  margin: 8% auto;
+  margin: 5% auto;
   background: linear-gradient(0.25turn, #dfc296, #694f67, #51525f, #cbd2d2);
   position: relative;
   font-family: "Orbitron", sans-serif;
@@ -20,14 +25,13 @@
 .forecast {
   background: linear-gradient(0.25turn, #cbd2d2, #51525f, #694f67, #dfc296);
   height: 33%;
-  padding: 8px;
+  padding: 16px 16px 0;
 }
 
 .navigate-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
   box-sizing: border-box;
   color: #3f2f3a;
   position: relative;
@@ -56,8 +60,29 @@
   width: 46px;
 }
 
+table {
+  table-layout: fixed;
+}
+
 td, th {
   text-align: center;
+  padding: 14px;
+  width: 25%;
+}
+
+td:not(:last-child),
+th:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+th {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+table svg {
+  width: 24px;
+  height: 24px;
+  fill: rgba(255, 255, 255, 0.75);
 }
 
 .forecast-item:nth-child(odd) {
@@ -87,7 +112,7 @@ button:active, button:focus, button:hover {
 }
 
 .main-content {
-  padding: 16px 36px;
+  padding: 0 16px 16px;
 }
 
 .container {
@@ -100,13 +125,13 @@ button:active, button:focus, button:hover {
 }
 
 .top-panel {
-  flex: 0 0 50%;
+  flex: 0 0 60%;
   border: 8px solid #111025;
   position: relative;
   border-radius: 24px;
   background: linear-gradient(0.25turn, #3f5769, #6b8ea3);
   min-height: 200px;
-  padding: 24px;
+  padding: 16px;
   box-sizing: border-box;
   color: rgba(255, 255, 255, 0.75);
 }
@@ -123,9 +148,9 @@ button:active, button:focus, button:hover {
 }
 
 .wheel-img {
-  flex: 0 0 50%;
+  flex: 0 0 40%;
   text-align: center;
-  margin: 24px;
+  margin: 16px;
 }
 .wheel-img img {
   width: 75%;
@@ -135,15 +160,43 @@ button:active, button:focus, button:hover {
 }
 
 .search {
-  padding: 16px;
+  padding: 8px;
 }
 
 .search-weather {
   background: linear-gradient(0.25turn, #3f5769, #6b8ea3);
-  width: 50%;
+  width: 80%;
   padding: 8px;
   border-radius: 12px;
   color: rgba(255, 255, 255, 0.75);
+  margin-right: 16px;
+}
+.search-weather::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.legs {
+  position: relative;
+}
+.legs:before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 8px;
+  position: absolute;
+  left: 16%;
+  bottom: -8px;
+  background-color: #6b6b6b;
+}
+.legs:after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 8px;
+  position: absolute;
+  right: 16%;
+  bottom: -8px;
+  background-color: #6b6b6b;
 }
 
 @keyframes infinite-spinning {
