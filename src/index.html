@@ -5,45 +5,48 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     <title>Weather Application</title>
 </head>
 <body>
     <main class="radio-wrapper">
         <div class="radio">
             <nav class="forecast">
-
-                <ul class="forecast-list">
-                    <li class="forecast-item forecast-day-1">
-                        <img src="images/cloudy.svg" alt="">
-                        <span class="day">Mon</span>
-                        <span class="temperature-data">23<span class="unit">&#176;C</span></span>
-                    </li>
-                    <li class="forecast-item forecast-day-2">
-                        <img src="images/sun.svg" alt="">
-                        <span class="day">Tue</span>
-                        <span class="temperature-data">20<span class="unit">&#176;C</span></span>
-                    </li>
-                    <li class="forecast-item forecast-day-3">
-                        <img src="images/sun-cloudy.svg" alt="">
-                        <span class="day">Wed</span>
-                        <span class="temperature-data">25<span class="unit">&#176;C</span></span>
-                    </li>
-                    <li class="forecast-item forecast-day-4">
-                        <img src="images/rainy.svg" alt="">
-                        <span class="day">Thu</span>
-                        <span class="temperature-data">19<span class="unit">&#176;C</span></span>
-                    </li>
-                    <li class="forecast-item forecast-day-5">
-                        <img src="images/sun.svg" alt="">
-                        <span class="day">Fri</span>
-                        <span class="temperature-data">29<span class="unit">&#176;C</span></span>
-                    </li>
-                </ul>
-                <div class="button-block">
-                    <button class="unit-swiсher">Unit</button>
-                    <button class="liked-cities">Liked</button>
-                    <button class="history">History</button>
+                <div class="navigate-wrapper">
+                    <ul class="forecast-list">
+                        <li class="forecast-item forecast-day-1">
+                            <img src="images/cloudy.svg" alt="">
+                            <span class="day">Mon</span>
+                            <span class="temperature-data">23<span class="unit">&#176;C</span></span>
+                        </li>
+                        <li class="forecast-item forecast-day-2">
+                            <img src="images/sun.svg" alt="">
+                            <span class="day">Tue</span>
+                            <span class="temperature-data">20<span class="unit">&#176;C</span></span>
+                        </li>
+                        <li class="forecast-item forecast-day-3">
+                            <img src="images/sun-cloudy.svg" alt="">
+                            <span class="day">Wed</span>
+                            <span class="temperature-data">25<span class="unit">&#176;C</span></span>
+                        </li>
+                        <li class="forecast-item forecast-day-4">
+                            <img src="images/rainy.svg" alt="">
+                            <span class="day">Thu</span>
+                            <span class="temperature-data">19<span class="unit">&#176;C</span></span>
+                        </li>
+                        <li class="forecast-item forecast-day-5">
+                            <img src="images/sun.svg" alt="">
+                            <span class="day">Fri</span>
+                            <span class="temperature-data">29<span class="unit">&#176;C</span></span>
+                        </li>
+                    </ul>
+                    <div class="button-block">
+                        <button class="unit-swiсher">Unit</button>
+                        <button class="liked-cities">Liked</button>
+                        <button class="history">History</button>
+                    </div>
                 </div>
+
             </nav>
             <section class="main-content">
                 <div class="container">
@@ -73,8 +76,8 @@
                 <div class="search">
                     <form action="">
                         <label class="search-label">
-                            <input type="text">
-                            <input type="submit">
+                            <input type="text" class="search-weather">
+                            <button type="submit">Search</button>
                         </label>
 
                     </form>

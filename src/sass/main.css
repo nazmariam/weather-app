@@ -1,8 +1,9 @@
 .radio {
   width: 768px;
   margin: 8% auto;
-  background-color: #dfc296;
+  background: linear-gradient(0.25turn, #dfc296, #694f67, #51525f, #cbd2d2);
   position: relative;
+  font-family: "Orbitron", sans-serif;
 }
 
 .radio:before {
@@ -17,34 +18,67 @@
 }
 
 .forecast {
-  background-color: #cbd2d2;
+  background: linear-gradient(0.25turn, #cbd2d2, #51525f, #694f67, #dfc296);
   height: 33%;
+  padding: 8px;
+}
+
+.navigate-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px;
   box-sizing: border-box;
   color: #3f2f3a;
+  position: relative;
 }
 
 .forecast-list {
   display: flex;
   list-style: none;
   margin: 0;
-  padding: 8px;
-  background-color: #986549;
+  padding: 8px 16px 8px 114px;
+  background: #8a6b3b url("../images/navigation-bg.jpg") 0% 50% no-repeat;
+  background-size: contain;
+  border: 8px inset #c5a777;
 }
 
 .forecast-item {
   width: 100px;
   text-align: center;
+  background-color: #726875;
+  padding: 16px 0;
+}
+.forecast-item:hover {
+  background-color: #927e7c;
 }
 .forecast-item img {
   width: 46px;
 }
 
+td, th {
+  text-align: center;
+}
+
+.forecast-item:nth-child(odd) {
+  background-color: #9c959c;
+}
+.forecast-item:nth-child(odd):hover {
+  background-color: #927e7c;
+}
+
 .day {
   display: block;
+}
+
+button {
+  background-color: #d2b38c;
+  border: 8px outset #bb8048;
+  margin: 4px;
+  color: #111025;
+}
+button:active, button:focus, button:hover {
+  border: 8px inset #bb8048;
 }
 
 .button-block {
@@ -53,7 +87,7 @@
 }
 
 .main-content {
-  padding: 36px;
+  padding: 16px 36px;
 }
 
 .container {
@@ -70,10 +104,11 @@
   border: 8px solid #111025;
   position: relative;
   border-radius: 24px;
-  background-color: #3f5769;
+  background: linear-gradient(0.25turn, #3f5769, #6b8ea3);
   min-height: 200px;
   padding: 24px;
   box-sizing: border-box;
+  color: rgba(255, 255, 255, 0.75);
 }
 .top-panel:before {
   content: " ";
@@ -84,7 +119,7 @@
   right: 0;
   bottom: 0;
   border: 8px solid #335d6e;
-  border-radius: 24px;
+  border-radius: 12px;
 }
 
 .wheel-img {
@@ -95,10 +130,29 @@
 .wheel-img img {
   width: 75%;
 }
+.wheel-img img:hover {
+  animation: infinite-spinning 1s infinite alternate;
+}
 
 .search {
-  background-color: #5a414a;
   padding: 16px;
+}
+
+.search-weather {
+  background: linear-gradient(0.25turn, #3f5769, #6b8ea3);
+  width: 50%;
+  padding: 8px;
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@keyframes infinite-spinning {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(120deg);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
