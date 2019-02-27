@@ -5,9 +5,83 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Modern front end boilerplate</title>
+    <title>Weather Application</title>
 </head>
 <body>
-    <script src="index.js"></script>
+    <main class="radio-wrapper">
+        <div class="radio">
+            <nav class="forecast">
+
+                <ul class="forecast-list">
+                    <li class="forecast-item forecast-day-1">
+                        <img src="images/cloudy.svg" alt="">
+                        <span class="day">Mon</span>
+                        <span class="temperature-data">23<span class="unit">&#176;C</span></span>
+                    </li>
+                    <li class="forecast-item forecast-day-2">
+                        <img src="images/sun.svg" alt="">
+                        <span class="day">Tue</span>
+                        <span class="temperature-data">20<span class="unit">&#176;C</span></span>
+                    </li>
+                    <li class="forecast-item forecast-day-3">
+                        <img src="images/sun-cloudy.svg" alt="">
+                        <span class="day">Wed</span>
+                        <span class="temperature-data">25<span class="unit">&#176;C</span></span>
+                    </li>
+                    <li class="forecast-item forecast-day-4">
+                        <img src="images/rainy.svg" alt="">
+                        <span class="day">Thu</span>
+                        <span class="temperature-data">19<span class="unit">&#176;C</span></span>
+                    </li>
+                    <li class="forecast-item forecast-day-5">
+                        <img src="images/sun.svg" alt="">
+                        <span class="day">Fri</span>
+                        <span class="temperature-data">29<span class="unit">&#176;C</span></span>
+                    </li>
+                </ul>
+                <div class="button-block">
+                    <button class="unit-swiсher">Unit</button>
+                    <button class="liked-cities">Liked</button>
+                    <button class="history">History</button>
+                </div>
+            </nav>
+            <section class="main-content">
+                <div class="container">
+                    <div class="top-panel">
+                        <table>
+                            <caption class="city-name">Kyiv, UA</caption>
+                            <tr>
+                                <th class="temperature"></th>
+                                <th class="humidity"></th>
+                                <th class="wet"></th>
+                                <th class="wind"></th>
+                                <th class="pressure"></th>
+                            </tr>
+                            <tr>
+                                <td class="temperature-data">1 <span class="unit">&#176;C</span></td>
+                                <td class="humidity-data">0%</td>
+                                <td class="wet-data">58%</td>
+                                <td class="wind-data">14 km/h</td>
+                                <td class="pressure-data">102 atm</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="wheel-img">
+                        <img src="images/wheel.png" alt="">
+                    </div>
+                </div>
+                <div class="search">
+                    <form action="">
+                        <label class="search-label">
+                            <input type="text">
+                            <input type="submit">
+                        </label>
+
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+<script src="index.js"></script>
 </body>
 </html>

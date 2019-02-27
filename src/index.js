@@ -1,3 +1,4 @@
 import 'normalize.css'
-import './main.scss'
-document.write(new Date())
+// import './sass/_pipboy.css'
+import './sass/main.scss'
+
