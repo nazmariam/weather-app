@@ -11,6 +11,9 @@
 <body>
     <main class="radio-wrapper">
         <div class="radio">
+            <audio id="radio" controls>
+                <source src="music/fallout.mp3">
+            </audio>
             <nav class="forecast">
                 <div class="navigate-wrapper">
                     <ul class="forecast-list">
@@ -49,14 +52,21 @@
             </nav>
             <section class="main-content">
                 <div class="search">
-                    <form>
+                    <button type="button" class="play active">
+                        <span class="on">on</span>
+                        <span class="off ">off</span>
+                    </button>
+                    <form class="search-form">
                         <label class="search-label">
+
                             <input type="text"
                                    class="search-weather"
                                    placeholder="Enter city name or coordinates">
                             <button type="submit">Search</button>
+
                         </label>
                     </form>
+                    <button type="button">Like</button>
                 </div>
                 <div class="container">
                     <div class="top-panel">
@@ -108,6 +118,10 @@
             <section class="legs"></section>
         </div>
     </main>
+    <footer>
+        <span>Created by <a href="https://github.com/nazmariam">Mary Fedirko</a></span>
+        <span>Design by <a href="https://www.behance.net/gallery/18121317/Radio-Weather-app-design-(2014)">Tomasz Kucharczyk</a></span>
+    </footer>
 <script src="index.js"></script>
 </body>
 </html>
