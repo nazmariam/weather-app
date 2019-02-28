@@ -139,13 +139,16 @@ button{
     border-radius: 12px;
   }
 }
+
 .wheel-img{
   flex: 0 0 40%;
   text-align: center;
   margin: 16px;
+  background: url(../images/wheel.png) 49% 50% no-repeat;
+  background-size: contain;
+  padding: 32px 0;
   img{
-    width:75%;
-
+    width:50%;
     &:hover{
       animation: infinite-spinning 1s infinite alternate;
     }

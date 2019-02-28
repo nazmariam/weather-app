@@ -50,8 +50,11 @@
     position: absolute;
     top:-44px;
   }
-  .wheel-img img{
-    width: 25%;
+  .wheel-img{
+    padding: 16px 0;
+    img{
+      width: 25%;
+    }
   }
   footer{
     margin: 10px 0 4px;
