@@ -1,3 +1,4 @@
+
 body{
   background: url("../images/bg.png") 50% no-repeat fixed;
   background-size: cover;
@@ -217,7 +218,6 @@ footer{
   font-size: 10px;
   a{
     color: #4c2628;
-
     &:hover,
     &:visited,
     &:active{
@@ -228,6 +228,12 @@ footer{
     margin: 0 16px;
   }
 }
+.mobile-visible{
+  display: none!important;
+}
+.mobile-hidden{
+
+}
 @keyframes infinite-spinning {
   from {
     transform: rotate(0deg);
@@ -236,3 +242,4 @@ footer{
     transform: rotate(120deg);
   }
 }
+@import "media";

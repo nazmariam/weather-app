@@ -1,0 +1,46 @@
+@media screen and (max-width: 500px) {
+  .radio{
+    width: 100%;
+    &:before{
+      top: -27px;
+      width: 367px;
+      height: 35px;
+    }
+  }
+  .radio-wrapper {
+    padding-top: 28px;
+  }
+  .container{
+    padding: 8px;
+    flex-direction: column;
+  }
+  .navigate-wrapper{
+    flex-direction: column;
+  }
+  .forecast-item{
+    width: 60px;
+  }
+  .forecast-list{
+    padding: 8px;
+    background: none;
+  }
+  .button-block{
+    flex-direction: row;
+  }
+  .search {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .wheel-img img{
+    width: 25%;
+  }
+  footer{
+    margin: 10px 0 4px;
+  }
+  .mobile-hidden {
+    display: none !important; }
+  .mobile-visible{
+    display: block!important;
+  }
+}

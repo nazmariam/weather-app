@@ -5,13 +5,17 @@
   "scripts": {
     "start": "parcel -p 3000 src/index.html",
     "build": "parcel build index.html",
-    "push-dist": "push-dir --dir=dist --branch=gh-pages"},
+    "push-dist": "push-dir --dir=dist --branch=gh-pages"
+  },
   "repository": "https://github.com/nazmariam/weather-app.git",
   "author": "nazmariam <fedirko.mary@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/nazmariam/weather-app#readme",
   "devDependencies": {
     "autoprefixer": "^9.4.9",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "node-sass": "^4.11.0",
     "parcel-bundler": "^1.11.0",
     "sass": "^1.17.2"
