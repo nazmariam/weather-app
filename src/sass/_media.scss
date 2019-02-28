@@ -18,19 +18,37 @@
     flex-direction: column;
   }
   .forecast-item{
-    width: 60px;
+    min-width: 52px;
+    width: 20%;
   }
   .forecast-list{
     padding: 8px;
     background: none;
+    width: 90%;
   }
   .button-block{
     flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
   }
   .search {
     padding: 0;
     display: flex;
     flex-direction: column;
+    position: relative;
+  }
+  .search-label{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .search-weather{
+    width: 70%;
+  }
+  .play{
+    position: absolute;
+    top:-44px;
   }
   .wheel-img img{
     width: 25%;
@@ -42,5 +60,13 @@
     display: none !important; }
   .mobile-visible{
     display: block!important;
+  }
+}
+@media screen and (max-width: 370px) {
+  .radio button{
+    font-size: 12px;
+  }
+  .play{
+    top: -39px;
   }
 }
