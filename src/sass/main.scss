@@ -157,18 +157,18 @@ button{
   width: 52px;
   &.active{
     .off{
-      display: none;
+      display: block;
     }
     .on{
-      display: block;
+      display: none;
     }
   }
 }
 .on{
-  display: none;
+  display: block;
 }
 .off{
-  display: block;
+  display: none;
 }
 .search{
   padding: 8px;
