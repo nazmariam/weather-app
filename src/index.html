@@ -44,7 +44,10 @@
                         </li>
                     </ul>
                     <div class="button-block">
-                        <button class="unit-swiсher">Unit</button>
+                        <button class="unit-swiсher" id="swicher">
+                            <span class="c">&#176;C</span>
+                            <span class="k">K</span>
+                        </button>
                         <button class="liked-cities">Liked</button>
                         <button class="history">History</button>
                     </div>
@@ -60,6 +63,8 @@
                         <label class="search-label">
 
                             <input type="text"
+                                   name="search-weather"
+                                   id="search-weather"
                                    class="search-weather"
                                    placeholder="Enter city name or coordinates">
                             <button type="submit">Search</button>

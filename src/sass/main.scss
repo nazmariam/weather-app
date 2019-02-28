@@ -207,6 +207,22 @@ button{
     background-color: #6b6b6b;
   }
 }
+.unit-swiсher{
+  .k{
+    display:none;
+  }
+  .c{
+    display:block;
+  }
+}
+.unit-swiсher.active{
+  .k{
+    display:block;
+  }
+  .c{
+    display:none;
+  }
+}
 #radio{
   display: none;
 }
@@ -228,12 +244,7 @@ footer{
     margin: 0 16px;
   }
 }
-.mobile-visible{
-  display: none!important;
-}
-.mobile-hidden{
 
-}
 @keyframes infinite-spinning {
   from {
     transform: rotate(0deg);
