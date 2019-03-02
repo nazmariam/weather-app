@@ -21,6 +21,7 @@
     "sass": "^1.17.2"
   },
   "dependencies": {
+    "components": "^0.1.0",
     "normalize.css": "^8.0.1",
     "scripts": "^0.1.0"
   }
