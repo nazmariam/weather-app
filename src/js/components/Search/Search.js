@@ -3,13 +3,10 @@ import Component from "../../framework/Component";
 export default class Search extends  Component{
     constructor(host, props){
         super(host, props);
-
         this.requestWeather.bind(Search);
-
     }
-
-    requestWeather(){
-        // e.preventDefault();
+    requestWeather({event}){
+        event.preventDefault();
         console.log('clicked');
     }
 
