@@ -9,4 +9,3 @@ export default class ActualWeather extends  Component{
     }
 }
 
-

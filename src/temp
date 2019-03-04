@@ -1,0 +1,316 @@
+
+            // {
+            //     tag: 'div',
+            //     classList: "radio",
+            //     children: [
+            //         {
+            //             tag: 'audio',
+            //             attributes:[
+            //                 {
+            //                     name: 'id',
+            //                     value: 'radio',
+            //                 },
+            //                 {
+            //                     name:'controls',
+            //                     value: true
+            //                 }
+            //             ],
+            //             children:[
+            //                 {
+            //                     tag: 'source',
+            //                     attributes: [
+            //                         {
+            //                             name: 'src',
+            //                             value: 'fallout.mp3',
+            //                         }
+            //                     ]
+            //                 }
+            //             ]
+            //         },
+            //         {
+            //             tag: 'nav',
+            //             classList: 'forecast',
+            //             children: [
+            //                 {
+            //                     tag:'div',
+            //                     classList:'navigate-wrapper',
+            //                     children: [
+            //                         {
+            //                             tag: 'ul',
+            //                             classList: 'forecast-list',
+            //                             children: [
+            //                                 {
+            //                                     tag: 'li',
+            //                                     classList: 'forecast-item',
+            //                                     children: [
+            //                                         {
+            //                                             tag: 'img',
+            //                                             attributes: [
+            //                                                 {
+            //                                                     name: 'src',
+            //                                                     value: 'cloudy.svg',
+            //                                                 }
+            //                                             ]
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'day',
+            //                                             content: 'Mon',
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'temperature-data',
+            //                                             content: '23 C',
+            //                                         }
+            //                                     ]
+            //                                 },
+            //                                 {
+            //                                     tag: 'li',
+            //                                     classList: 'forecast-item',
+            //                                     children: [
+            //                                         {
+            //                                             tag: 'img',
+            //                                             attributes: [
+            //                                                 {
+            //                                                     name: 'src',
+            //                                                     value: 'cloudy.svg',
+            //                                                 }
+            //                                             ]
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'day',
+            //                                             content: 'Mon',
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'temperature-data',
+            //                                             content: '23 C',
+            //                                         }
+            //                                     ]
+            //                                 },
+            //                                 {
+            //                                     tag: 'li',
+            //                                     classList: 'forecast-item',
+            //                                     children: [
+            //                                         {
+            //                                             tag: 'img',
+            //                                             attributes: [
+            //                                                 {
+            //                                                     name: 'src',
+            //                                                     value: 'cloudy.svg',
+            //                                                 }
+            //                                             ]
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'day',
+            //                                             content: 'Mon',
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'temperature-data',
+            //                                             content: '23 C',
+            //                                         }
+            //                                     ]
+            //                                 },
+            //                                 {
+            //                                     tag: 'li',
+            //                                     classList: 'forecast-item',
+            //                                     children: [
+            //                                         {
+            //                                             tag: 'img',
+            //                                             attributes: [
+            //                                                 {
+            //                                                     name: 'src',
+            //                                                     value: 'cloudy.svg',
+            //                                                 }
+            //                                             ]
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'day',
+            //                                             content: 'Mon',
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'temperature-data',
+            //                                             content: '23 C',
+            //                                         }
+            //                                     ]
+            //                                 },
+            //                                 {
+            //                                     tag: 'li',
+            //                                     classList: 'forecast-item',
+            //                                     children: [
+            //                                         {
+            //                                             tag: 'img',
+            //                                             attributes: [
+            //                                                 {
+            //                                                     name: 'src',
+            //                                                     value: 'cloudy.svg',
+            //                                                 }
+            //                                             ]
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'day',
+            //                                             content: 'Mon',
+            //                                         },
+            //                                         {
+            //                                             tag: 'span',
+            //                                             classList: 'temperature-data',
+            //                                             content: '23 C',
+            //                                         }
+            //                                     ]
+            //                                 },
+            //                             ]
+            //                         },
+            //                         {
+            //                             tag: 'div',
+            //                             classList: 'button-block',
+            //                             children:[
+            //                                 {
+            //                                     tag: 'button',
+            //                                     content: '&#176;C',
+            //                                     classList: 'unit-swicher',
+            //                                     attributes:[
+            //                                         {
+            //                                             name: 'id',
+            //                                             value: 'swicher',
+            //                                         }
+            //                                     ]
+            //                                 },
+            //                                 {
+            //                                     tag: 'button',
+            //                                     content: 'Liked',
+            //                                     classList: 'liked-cities',
+            //                                 },
+            //                                 {
+            //                                     tag: 'button',
+            //                                     content: 'History',
+            //                                     classList: 'history',
+            //                                 },
+            //                             ]
+            //                         }
+            //                     ]
+            //                 },
+            //
+            //             ]
+            //         },
+            //         {
+            //             tag:'section',
+            //             classList:'main-content',
+            //             children:[
+            //                 {
+            //                     tag: 'div',
+            //                     classList: 'search',
+            //                     children:[
+            //                         {
+            //                             tag: 'button',
+            //                             classList: 'play',
+            //                             attributes:[
+            //                                 {
+            //                                     name: 'type',
+            //                                     value: 'button',
+            //                                 }
+            //                             ]
+            //                         }
+            //                     ]
+            //                 },
+            //                 // {
+            //                 //
+            //                 // },
+            //             ]
+            //         },
+            //         {
+            //             tag:'input',
+            //             eventHandlers: [
+            //                 {
+            //                     eventType: 'change',
+            //                 }
+            //             ]
+            //         }
+            //     ],
+            // },
+
+            // "Temperature range",
+            // {
+            //     tag: Temperature,
+            //     props:{
+            //         temperature: 7,
+            //         unit: 'C',
+            //     }
+            // },
+            // {
+            //     tag: Temperature,
+            //     props:{
+            //         temperature: 10,
+            //         unit: 'C',
+            //     }
+            // },
+            // {
+            //     tag: 'div',
+            //     content: "Me div",
+            //     classList: ['nice'],
+            //     attributes:[
+            //         {
+            //             name: 'title',
+            //             value: "I'm nice"
+            //         }
+            //     ]
+            // },
+            // {
+            //     tag: 'div',
+            //     content: "I'm a parent div",
+            //     attributes: [
+            //         {
+            //             name: 'title',
+            //             value: 'I have got children',
+            //         },
+            //     ],
+            //     children: [
+            //         {
+            //             tag: 'div',
+            //             content: 'Child1',
+            //         },
+            //         {
+            //             tag: 'div',
+            //             content: 'Child2',
+            //             children: [
+            //                 {
+            //                     tag:'div',
+            //                     content:'Child2.1',
+            //                 },
+            //                 {
+            //                     tag:'div',
+            //                     content:'Child2.2',
+            //                 },
+            //                 {
+            //                     tag: 'div',
+            //                     content:'Child2.3'
+            //                 },
+            //             ]
+            //         },
+            //         {
+            //             tag:'div',
+            //             content:'Child3'
+            //         },
+            //         {
+            //             tag:'input',
+            //             eventHandlers: [
+            //                 {
+            //                     eventType: 'change',
+            //                 }
+            //             ]
+            //         }
+            //     ],
+            // },
+            // {
+            //   tag: Wind,
+            //   props:{
+            //       speed:250,
+            //       unit:'mph',
+            //   }
+            // },
+            // w1,

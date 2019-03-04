@@ -68,6 +68,12 @@ export default class Component {
                         });
                     }
 
+                    if (element.eventHandlers){
+                        element.eventHandlers.forEach(attributeSpec => {
+                            container.addEventListener(attributeSpec.eventType, attributeSpec.eventMethod);
+                        });
+                    }
+
                     return container;
                 }
             }

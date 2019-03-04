@@ -5,7 +5,7 @@ export default class ForecastWeather extends  Component{
         super(host, props)
     }
     render(){
-        return [this.props.speed +''+ this.props.unit];
+        return this.props.speed +''+ this.props.unit;
     }
 }
 
