@@ -91,16 +91,16 @@ export default class App extends Component{
                 day: 'Mon', temperature: 25, unit: '&#176;C', imgsrc: 'cloudy.svg',
             },
             {
-                day: 'Tue', temperature: 27, unit: '&#176;C', imgsrc: 'sun.92046673.svg',
+                day: 'Tue', temperature: 27, unit: '&#176;C', imgsrc: 'sun.svg',
             },
             {
-                day: 'Wed', temperature: 23, unit: '&#176;C', imgsrc: 'sun-cloudy.bcad873d.svg',
+                day: 'Wed', temperature: 23, unit: '&#176;C', imgsrc: 'sun-cloudy.svg',
             },
             {
-                day: 'Thu', temperature: 26, unit: '&#176;C', imgsrc: 'rainy.801a3046.svg',
+                day: 'Thu', temperature: 26, unit: '&#176;C', imgsrc: 'rainy.svg',
             },
             {
-                day: 'Fri', temperature: 29, unit: '&#176;C', imgsrc: 'sun.92046673.svg',
+                day: 'Fri', temperature: 29, unit: '&#176;C', imgsrc: 'sun.svg',
             },
 
         ]);
