@@ -5,7 +5,36 @@ export default class ForecastWeather extends  Component{
         super(host, props)
     }
     render(){
-        return this.props.speed +''+ this.props.unit;
+        let forecast = this.props;
+        console.log(forecast);
+        return forecast.map(item =>
+            (
+                {
+                    tag: 'li',
+                    classList: 'forecast-item',
+                    children:[
+                        {
+                            tag: 'img',
+                            attributes:[
+                                {
+                                    name: 'src',
+                                    value: item.imgsrc,
+                                }
+                            ]
+                        },
+                        {
+                            tag: 'span',
+                            content: item.day,
+                            classList: 'day',
+                        },
+                        {
+                            tag: 'span',
+                            content: item.temperature+item.unit,
+                            classList: 'temperature-data',
+                        }
+                    ]
+                }
+            ))
     }
 }
 

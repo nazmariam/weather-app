@@ -21,32 +21,8 @@ export default class App extends Component{
             </audio>
             <nav class="forecast">
                 <div class="navigate-wrapper">
-                    <ul class="forecast-list">
-                        <li class="forecast-item forecast-day-1">
-                            <img src="cloudy.svg" alt="">
-                            <span class="day">Mon</span>
-                            <span class="temperature-data">23<span class="unit">&#176;C</span></span>
-                        </li>
-                        <li class="forecast-item forecast-day-2">
-                            <img src="sun.svg" alt="">
-                            <span class="day">Tue</span>
-                            <span class="temperature-data">20<span class="unit">&#176;C</span></span>
-                        </li>
-                        <li class="forecast-item forecast-day-3">
-                            <img src="sun-cloudy.svg" alt="">
-                            <span class="day">Wed</span>
-                            <span class="temperature-data">25<span class="unit">&#176;C</span></span>
-                        </li>
-                        <li class="forecast-item forecast-day-4">
-                            <img src="rainy.svg" alt="">
-                            <span class="day">Thu</span>
-                            <span class="temperature-data">19<span class="unit">&#176;C</span></span>
-                        </li>
-                        <li class="forecast-item forecast-day-5">
-                            <img src="sun.svg" alt="">
-                            <span class="day">Fri</span>
-                            <span class="temperature-data">29<span class="unit">&#176;C</span></span>
-                        </li>
+                    <ul class="forecast-list" id="forecast-list">
+                        
                     </ul>
                     <div class="button-block">
                         <button class="unit-swiсher" id="swicher">
@@ -87,10 +63,27 @@ export default class App extends Component{
         new Search(search);
         let todayWeather = layout.getElementById('today-weather');
         new ActualWeather(todayWeather, {city: 'Kiev, UA', temperature: 25, unit:'&#176;C', humidity: 58, wind: 14, pressure:102});
+        let forecast = layout.getElementById('forecast-list');
+        new ForecastWeather(forecast, [
+            {
+                day: 'Mon', temperature: 25, unit: '&#176;C', imgsrc: 'cloudy.svg',
+            },
+            {
+                day: 'Tue', temperature: 27, unit: '&#176;C', imgsrc: 'sun.92046673.svg',
+            },
+            {
+                day: 'Wed', temperature: 23, unit: '&#176;C', imgsrc: 'sun-cloudy.bcad873d.svg',
+            },
+            {
+                day: 'Thu', temperature: 26, unit: '&#176;C', imgsrc: 'rainy.801a3046.svg',
+            },
+            {
+                day: 'Fri', temperature: 29, unit: '&#176;C', imgsrc: 'sun.92046673.svg',
+            },
 
-        // // new Temperature(t2, {temperature: 10, unit:'C'});
-        // const w1 = document.createElement('div');
-        // new Wind(w1, {speed:1230, unit:'mph'});
+        ]);
+
+
         return [
             layout,
         ];
