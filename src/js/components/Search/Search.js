@@ -1,4 +1,5 @@
 import Component from "../../framework/Component";
+import WeatherDataService from "../../../services/WeatherDataService";
 
 export default class Search extends  Component{
     constructor(host, props){
@@ -9,18 +10,10 @@ export default class Search extends  Component{
     requestWeather(event){
         event.preventDefault();
         let query = document.getElementById('search-weather').value;
-            let swicher = document.getElementById('swicher');
-            if(query){
-                fetch('http://api.openweathermap.org/data/2.5/weather?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+'metric', {method:'get'})
-                    .then(response => {
-                        if(response.ok)
-                            return response.json();
-                        return Promise.reject('Weather Server responded ' + response.status)
-                    }).then(data=>{
-                    console.log(data);
-                })
-            }
-
+        if(query) {
+            WeatherDataService.getCurrentWeather(query).then(data=>{console.log(data)});
+            WeatherDataService.getWeatherForecast(query).then(data=>{console.log(data)});
+        }
     }
 
     render(){

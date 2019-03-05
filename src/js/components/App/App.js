@@ -4,12 +4,27 @@ import {Wind} from "../Wind";
 import {ActualWeather} from "../ActualWeather";
 import {ForecastWeather} from "../ForecastWeather";
 import {Search} from "../Search";
+import WeatherDataService from "../../../services/WeatherDataService"
 
 export default class App extends Component{
     constructor(host){
         super(host)
     }
+
+
+    requestWeather(event){
+        event.preventDefault();
+        let query = document.getElementById('search-weather').value;
+        if(query) {
+            WeatherDataService.getCurrentWeather(query).then(data=>{console.log(data)});
+            WeatherDataService.getWeatherForecast(query).then(data=>{console.log(data)});
+        }
+    }
+
+
+
     render(){
+
         let layout = document.createDocumentFragment();
 
         let radio = document.createElement('div');
@@ -61,6 +76,7 @@ export default class App extends Component{
 
         let search = layout.getElementById('searchForm');
         new Search(search);
+        
         let todayWeather = layout.getElementById('today-weather');
         new ActualWeather(todayWeather, {city: 'Kiev, UA', temperature: 25, unit:'&#176;C', humidity: 58, wind: 14, pressure:102});
         let forecast = layout.getElementById('forecast-list');
@@ -82,7 +98,6 @@ export default class App extends Component{
             },
 
         ]);
-
 
         return [
             layout,
