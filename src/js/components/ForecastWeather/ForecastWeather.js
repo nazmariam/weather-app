@@ -6,7 +6,6 @@ export default class ForecastWeather extends  Component{
     }
     render(){
         let forecast = this.props;
-        console.log(forecast);
         return forecast.map(item =>
             (
                 {

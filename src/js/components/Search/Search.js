@@ -8,17 +8,17 @@ export default class Search extends  Component{
         super(host, props);
 
         // this.requestWeather = this.requestWeather.bind(this);
-        bindAll(this, 'requestWeather');
+        // bindAll(this, 'requestWeather', 'render');
     }
 
-    requestWeather(event){
-        event.preventDefault();
-        let query = document.getElementById('search-weather').value;
-        if(query) {
-            WeatherDataService.getCurrentWeather(query).then(data=>{console.log(data)});
-            WeatherDataService.getWeatherForecast(query).then(data=>{console.log(data)});
-        }
-    }
+    // requestWeather(event){
+    //     event.preventDefault();
+    //     let query = document.getElementById('search-weather').value;
+    //     if(query) {
+    //         WeatherDataService.getCurrentWeather(query).then(data=>{this.render(data)});
+    //         WeatherDataService.getWeatherForecast(query).then(data=>{console.log(data)});
+    //     }
+    // }
 
     render(){
         return [
@@ -65,12 +65,7 @@ export default class Search extends  Component{
                         ]
                     }
                 ],
-                eventHandlers: [
-                    {
-                        eventType: 'submit',
-                        eventMethod: this.requestWeather,
-                    }
-                ]
+
             }
         ]
     }

@@ -7,27 +7,20 @@ import WeatherDataService from "../../../services/WeatherDataService"
 export default class App extends Component{
     constructor(host, data={}){
         super(host, data);
-        this.requestWeather = this.requestWeather.bind(this);
-
-    }
-
-    func(rt){
-        console.log(rt);
+        // this.requestWeather = this.requestWeather.bind(this);
+        this.render = this.render.bind(this);
     }
 
     requestWeather(event){
         event.preventDefault();
         let query = document.getElementById('search-weather').value;
         if(query) {
-            WeatherDataService.getCurrentWeather(query).then(data=>{console.log(data)});
+            WeatherDataService.getCurrentWeather(query).then(data=>{this.render(data)});
             WeatherDataService.getWeatherForecast(query).then(data=>{console.log(data)});
         }
     }
 
-
-
-    render(){
-
+    render(dataR={}){
         let layout = document.createDocumentFragment();
 
         let radio = document.createElement('div');
@@ -36,7 +29,7 @@ export default class App extends Component{
         radio.innerHTML = `
         <audio id="radio" controls>
                 <source src="fallout.mp3">
-            </audio>
+        </audio>
             <nav class="forecast">
                 <div class="navigate-wrapper">
                     <ul class="forecast-list" id="forecast-list">
@@ -54,10 +47,9 @@ export default class App extends Component{
             </nav>
             <section class="main-content">
                 <div class="search">
-                    <button type="button" class="play">
-                        <span class="on">on</span>
-                        <span class="off ">off</span>
-                    </button>
+                <span id="playWrapper">
+                    
+                </span>
                     <span id="searchForm">
                     some magic will be here
                     </span>
@@ -78,13 +70,32 @@ export default class App extends Component{
         layout.appendChild(radio);
 
         let search = layout.getElementById('searchForm');
-        let data = new Search(search);
-        // let queryVal = layout.getElementById('search-weather');
-        // queryVal.addEventListener('submit',this.requestWeather);
+        new Search(search);
+        let form = layout.querySelector(".search-form");
+        form.addEventListener('submit', this.requestWeather);
+
+        let playButton = document.createElement('button');
+        playButton.classList.add('play');
+        playButton.setAttribute('type','button');
+        playButton.innerHTML = `<span class="on">on</span>
+                        <span class="off ">off</span>`;
+        let audio = layout.getElementById("radio");
+        playButton.addEventListener('click', function () {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+            this.classList.toggle('active');
+        });
+        layout.getElementById('playWrapper').appendChild(playButton);
+
+
+
 
 
         let todayWeather = layout.getElementById('today-weather');
-        new ActualWeather(todayWeather, {city: data.city, temperature: 25, unit:'&#176;C', humidity: 58, wind: 14, pressure:102});
+        new ActualWeather(todayWeather, {city: 'Kiev', temperature: 25, unit:'&#176;C', humidity: 58, wind: 14, pressure:102});
         let forecast = layout.getElementById('forecast-list');
         new ForecastWeather(forecast, [
             {
