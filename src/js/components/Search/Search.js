@@ -1,10 +1,14 @@
 import Component from "../../framework/Component";
 import WeatherDataService from "../../../services/WeatherDataService";
+import {App} from "../App";
+import {bindAll} from "../../utils/helpers"
 
 export default class Search extends  Component{
     constructor(host, props){
         super(host, props);
-        this.requestWeather = this.requestWeather.bind(this);
+
+        // this.requestWeather = this.requestWeather.bind(this);
+        bindAll(this, 'requestWeather');
     }
 
     requestWeather(event){
