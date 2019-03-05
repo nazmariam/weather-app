@@ -3,30 +3,24 @@ import Component from "../../framework/Component";
 export default class Search extends  Component{
     constructor(host, props){
         super(host, props);
-        this.requestWeather.bind(Search);
+        this.requestWeather = this.requestWeather.bind(this);
     }
-    request(reqString){
-            fetch('http://api.openweathermap.org/data/2.5/weather?q='+reqString+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+'metric', {method:'get'})
-                .then(response => {
-                    if(response.ok)
-                    return response.json();
-                    return Promise.reject('Weather Server responded ' + response.status)
-                }).then(data=>{
-                    console.log(data);
-            })
-        }
-    requestWeather(){
+
+    requestWeather(event){
         event.preventDefault();
         let query = document.getElementById('search-weather').value;
             let swicher = document.getElementById('swicher');
-        fetch('http://api.openweathermap.org/data/2.5/weather?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+'metric', {method:'get'})
-            .then(response => {
-                if(response.ok)
-                    return response.json();
-                return Promise.reject('Weather Server responded ' + response.status)
-            }).then(data=>{
-            console.log(data);
-        })
+            if(query){
+                fetch('http://api.openweathermap.org/data/2.5/weather?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+'metric', {method:'get'})
+                    .then(response => {
+                        if(response.ok)
+                            return response.json();
+                        return Promise.reject('Weather Server responded ' + response.status)
+                    }).then(data=>{
+                    console.log(data);
+                })
+            }
+
     }
 
     render(){
