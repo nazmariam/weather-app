@@ -11,25 +11,20 @@ export default class Component {
         if (typeof content === 'string') {
             this.host.innerHTML = content;
         } else {
-            content.map(item => this._vDomPrototypeElementToHtmlElement(item)) // [string|HTMLElement] => [HTMLElement]
+            content.map(item => this._vDomPrototypeElementToHtmlElement(item))
                 .forEach(htmlElement => {
                     this.host.appendChild(htmlElement);
                 });
         }
     }
-    /* @returns {string|[string|HTMLElement|Component]} */
+
     render() {
-        return 'OMG! They wanna see me!!!!!! Aaaaaa';
+        return 'OMG! They wanna see me!';
     }
 
-    /**
-     *
-     * @param {string|HTMLElement|Object} element
-     * @private
-     */
     _vDomPrototypeElementToHtmlElement(element) {
         if (typeof element === 'string') {
-            const htmlElement = document.createElement('div'); // TODO: textNode
+            const htmlElement = document.createElement('div');
             htmlElement.innerHTML = element;
             return htmlElement;
         } else {

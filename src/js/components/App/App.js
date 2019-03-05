@@ -1,6 +1,4 @@
 import Component from "../../framework/Component";
-import {Temperature} from "../Temperature";
-import {Wind} from "../Wind";
 import {ActualWeather} from "../ActualWeather";
 import {ForecastWeather} from "../ForecastWeather";
 import {Search} from "../Search";
