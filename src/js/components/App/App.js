@@ -5,22 +5,25 @@ import {Search} from "../Search";
 import WeatherDataService from "../../../services/WeatherDataService"
 
 export default class App extends Component{
-    constructor(host, data={}){
-        super(host, data);
+    constructor(host, dataR={}){
+        super(host, dataR);
         this.requestWeather = this.requestWeather.bind(this);
         this.render = this.render.bind(this);
+        this._render();
     }
 
     requestWeather(event){
         event.preventDefault();
         let query = document.getElementById('search-weather').value;
         if(query) {
-            WeatherDataService.getCurrentWeather(query).then(data=>{this.render(data)});
+            WeatherDataService.getCurrentWeather(query).then(data=>{return this.render(data)});
             WeatherDataService.getWeatherForecast(query).then(data=>{console.log(data)});
         }
     }
 
-    render(dataR={}){
+    render(dataR){
+        console.log(dataR);
+
         let layout = document.createDocumentFragment();
 
         let radio = document.createElement('div');
@@ -95,7 +98,7 @@ export default class App extends Component{
 
 
         let todayWeather = layout.getElementById('today-weather');
-        new ActualWeather(todayWeather, {city: 'Kiev', temperature: 25, unit:'&#176;C', humidity: 58, wind: 14, pressure:102});
+        new ActualWeather(todayWeather, {city: dataR, temperature: 25, unit:'&#176;C', humidity: 58, wind: 14, pressure:102});
         let forecast = layout.getElementById('forecast-list');
         new ForecastWeather(forecast, [
             {
@@ -118,7 +121,6 @@ export default class App extends Component{
 
         return [
             layout,
-
         ];
 
     }

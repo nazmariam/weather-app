@@ -5,13 +5,15 @@ export default class ActualWeather extends  Component{
         super(host, props)
     }
     render(){
+        // console.log(this.props);
+        this.props.city?console.log(this.props.city.name):console.log('nope');
         return  [
             {
                 tag: 'table',
                 children: [
                     {
                         tag: 'caption',
-                        content: this.props.city,
+                        content: this.props.city?this.props.city.name:'RT',
                         classList: 'city-name',
                     },
                     {
