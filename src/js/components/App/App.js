@@ -7,7 +7,7 @@ import WeatherDataService from "../../../services/WeatherDataService"
 export default class App extends Component{
     constructor(host, data={}){
         super(host, data);
-        // this.requestWeather = this.requestWeather.bind(this);
+        this.requestWeather = this.requestWeather.bind(this);
         this.render = this.render.bind(this);
     }
 
