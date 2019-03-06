@@ -4,9 +4,10 @@ export default class Component {
         this.props = props;
         this._render();
     }
-    _render() {
+    _render(dataR) {
+        console.log('!'+dataR);
         this.host.innerHTML = "";
-        const content = this.render();
+        const content = this.render(dataR);
 
         if (typeof content === 'string') {
             this.host.innerHTML = content;

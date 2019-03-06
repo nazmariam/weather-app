@@ -16,13 +16,14 @@ export default class App extends Component{
         event.preventDefault();
         let query = document.getElementById('search-weather').value;
         if(query) {
-            WeatherDataService.getCurrentWeather(query).then(data=>{return this.render(data)});
-            WeatherDataService.getWeatherForecast(query).then(data=>{console.log(data)});
+            // WeatherDataService.getCurrentWeather(query).then(data=>{ this._render(data)});
+            // WeatherDataService.getWeatherForecast(query).then(data=>{ this._render(data)});
+            WeatherDataService.getAllWeatherInfo(query).then(data=>{this._render(data)});
         }
     }
 
     render(dataR){
-        console.log(dataR);
+        if(dataR){console.log(dataR)};
 
         let layout = document.createDocumentFragment();
 
@@ -93,12 +94,25 @@ export default class App extends Component{
         });
         layout.getElementById('playWrapper').appendChild(playButton);
 
-
+        // main: {temp: 9.75, pressure: 986, humidity: 76, temp_min: 8.33, temp_max: 11}
+        // name: "London"
+        // rain:
+        //     1h: 0.25
+        // __proto__: Object
+        // sys: {type: 1, id: 1414, message: 0.0129, country: "GB", sunrise: 1551854017, …}
+        // visibility: 10000
+        // weather: Array(1)
+        // 0: {id: 500, main: "Rain", description: "light rain", icon: "10n"}
+        // length: 1
+        // __proto__: Array(0)
+        // wind:
+        //     deg: 200
+        // speed: 6.7
 
 
 
         let todayWeather = layout.getElementById('today-weather');
-        new ActualWeather(todayWeather, {city: dataR, temperature: 25, unit:'&#176;C', humidity: 58, wind: 14, pressure:102});
+        new ActualWeather(todayWeather, {city: dataR, temperature: dataR, unit:'&#176;C', humidity: dataR, wind: dataR, pressure:dataR});
         let forecast = layout.getElementById('forecast-list');
         new ForecastWeather(forecast, [
             {

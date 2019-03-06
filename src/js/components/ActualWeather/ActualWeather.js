@@ -4,16 +4,31 @@ export default class ActualWeather extends  Component{
     constructor(host, props){
         super(host, props)
     }
+
+    // main: {temp: 9.75, pressure: 986, humidity: 76, temp_min: 8.33, temp_max: 11}
+    // name: "London"
+    // rain:
+    //     1h: 0.25
+    // __proto__: Object
+    // sys: {type: 1, id: 1414, message: 0.0129, country: "GB", sunrise: 1551854017, …}
+    // visibility: 10000
+    // weather: Array(1)
+    // 0: {id: 500, main: "Rain", description: "light rain", icon: "10n"}
+    // length: 1
+    // __proto__: Array(0)
+    // wind:
+    //     deg: 200
+    // speed: 6.7
+
+
     render(){
-        // console.log(this.props);
-        this.props.city?console.log(this.props.city.name):console.log('nope');
         return  [
             {
                 tag: 'table',
                 children: [
                     {
                         tag: 'caption',
-                        content: this.props.city?this.props.city.name:'RT',
+                        content: this.props.city?this.props.city[1].name:'',
                         classList: 'city-name',
                     },
                     {
@@ -48,22 +63,22 @@ export default class ActualWeather extends  Component{
                             {
                                 tag: 'td',
                                 classList: 'temperature-data',
-                                content: this.props.temperature + this.props.unit,
+                                content: this.props.temperature?this.props.temperature[1].main.temp + this.props.unit:'',
                             },
                             {
                                 tag: 'td',
                                 classList: 'humidity-data',
-                                content: this.props.humidity + '%',
+                                content: this.props.humidity?this.props.humidity[1].main.humidity + '%':'',
                             },
                             {
                                 tag: 'td',
                                 classList: 'wind-data',
-                                content: this.props.wind + 'km/h',
+                                content: this.props.wind?this.props.wind[1].wind.speed + 'km/h':'',
                             },
                             {
                                 tag: 'td',
                                 classList: 'pressure-data',
-                                content: this.props.pressure + 'atm',
+                                content: this.props.pressure?this.props.pressure[1].main.pressure + 'atm':'',
                             },
                         ]
                     }
