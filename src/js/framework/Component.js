@@ -5,7 +5,6 @@ export default class Component {
         this._render();
     }
     _render(dataR) {
-        console.log('!'+dataR);
         this.host.innerHTML = "";
         const content = this.render(dataR);
 

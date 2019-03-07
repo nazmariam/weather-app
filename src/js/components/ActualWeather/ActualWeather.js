@@ -5,21 +5,6 @@ export default class ActualWeather extends  Component{
         super(host, props)
     }
 
-    // main: {temp: 9.75, pressure: 986, humidity: 76, temp_min: 8.33, temp_max: 11}
-    // name: "London"
-    // rain:
-    //     1h: 0.25
-    // __proto__: Object
-    // sys: {type: 1, id: 1414, message: 0.0129, country: "GB", sunrise: 1551854017, …}
-    // visibility: 10000
-    // weather: Array(1)
-    // 0: {id: 500, main: "Rain", description: "light rain", icon: "10n"}
-    // length: 1
-    // __proto__: Array(0)
-    // wind:
-    //     deg: 200
-    // speed: 6.7
-
 
     render(){
         return  [
@@ -28,7 +13,7 @@ export default class ActualWeather extends  Component{
                 children: [
                     {
                         tag: 'caption',
-                        content: this.props.city?this.props.city[1].name:'',
+                        content: this.props.city?this.props.city[1].name+',&nbsp;'+this.props.city[1].sys.country:'',
                         classList: 'city-name',
                     },
                     {

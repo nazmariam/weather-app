@@ -43,9 +43,12 @@ body{
   background: #8a6b3b url("../images/navigation-bg.jpg") 0% 50% no-repeat;
   background-size: contain;
   border: 8px inset #c5a777;
+  width: 100%;
+  min-height: 119px;
 }
 .forecast-item{
   width: 100px;
+  min-width: 100px;
   text-align: center;
   background-color: #726875;
   padding: 16px 0;

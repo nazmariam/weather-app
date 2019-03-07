@@ -1,4 +1,3 @@
-import {App} from "../js/components/App"
 class WeatherDataService{
     constructor(){
 

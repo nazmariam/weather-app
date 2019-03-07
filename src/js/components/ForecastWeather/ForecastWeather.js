@@ -1,4 +1,5 @@
 import Component from "../../framework/Component";
+import {dayOfWeek} from "../../utils/helpers";
 
 export default class ForecastWeather extends  Component{
     constructor(host, props){
@@ -6,7 +7,7 @@ export default class ForecastWeather extends  Component{
     }
     render(){
         let forecast = this.props;
-        return forecast.map(item =>
+        return forecast.map((item,i) =>
             (
                 {
                     tag: 'li',
@@ -23,12 +24,12 @@ export default class ForecastWeather extends  Component{
                         },
                         {
                             tag: 'span',
-                            content: item.day,
+                            content: dayOfWeek(item.day),
                             classList: 'day',
                         },
                         {
                             tag: 'span',
-                            content: item.temperature+item.unit,
+                            content: Math.round(item.temperature)+item.unit,
                             classList: 'temperature-data',
                         }
                     ]

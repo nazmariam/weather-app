@@ -16,8 +16,6 @@ export default class App extends Component{
         event.preventDefault();
         let query = document.getElementById('search-weather').value;
         if(query) {
-            // WeatherDataService.getCurrentWeather(query).then(data=>{ this._render(data)});
-            // WeatherDataService.getWeatherForecast(query).then(data=>{ this._render(data)});
             WeatherDataService.getAllWeatherInfo(query).then(data=>{this._render(data)});
         }
     }
@@ -94,44 +92,28 @@ export default class App extends Component{
         });
         layout.getElementById('playWrapper').appendChild(playButton);
 
-        // main: {temp: 9.75, pressure: 986, humidity: 76, temp_min: 8.33, temp_max: 11}
-        // name: "London"
-        // rain:
-        //     1h: 0.25
-        // __proto__: Object
-        // sys: {type: 1, id: 1414, message: 0.0129, country: "GB", sunrise: 1551854017, …}
-        // visibility: 10000
-        // weather: Array(1)
-        // 0: {id: 500, main: "Rain", description: "light rain", icon: "10n"}
-        // length: 1
-        // __proto__: Array(0)
-        // wind:
-        //     deg: 200
-        // speed: 6.7
-
-
 
         let todayWeather = layout.getElementById('today-weather');
-        new ActualWeather(todayWeather, {city: dataR, temperature: dataR, unit:'&#176;C', humidity: dataR, wind: dataR, pressure:dataR});
+        if(dataR){new ActualWeather(todayWeather, {city: dataR, temperature: dataR, unit:'&#176;C', humidity: dataR, wind: dataR, pressure:dataR})}
         let forecast = layout.getElementById('forecast-list');
-        new ForecastWeather(forecast, [
+        if(dataR){new ForecastWeather(forecast, [
             {
-                day: 'Mon', temperature: 25, unit: '&#176;C', imgsrc: 'cloudy.svg',
+                day: dataR[0].list[7].dt, temperature: dataR[0].list[7].main.temp, unit: '&#176;C', imgsrc: 'http://openweathermap.org/img/w/'+dataR[0].list[7].weather[0].icon+'.png',
             },
             {
-                day: 'Tue', temperature: 27, unit: '&#176;C', imgsrc: 'sun.svg',
+                day: dataR[0].list[15].dt, temperature: dataR[0].list[15].main.temp, unit: '&#176;C', imgsrc: 'http://openweathermap.org/img/w/'+dataR[0].list[15].weather[0].icon+'.png',
             },
             {
-                day: 'Wed', temperature: 23, unit: '&#176;C', imgsrc: 'sun-cloudy.svg',
+                day: dataR[0].list[23].dt, temperature: dataR[0].list[23].main.temp, unit: '&#176;C', imgsrc: 'http://openweathermap.org/img/w/'+dataR[0].list[23].weather[0].icon+'.png',
             },
             {
-                day: 'Thu', temperature: 26, unit: '&#176;C', imgsrc: 'rainy.svg',
+                day: dataR[0].list[31].dt, temperature: dataR[0].list[31].main.temp, unit: '&#176;C', imgsrc: 'http://openweathermap.org/img/w/'+dataR[0].list[31].weather[0].icon+'.png',
             },
             {
-                day: 'Fri', temperature: 29, unit: '&#176;C', imgsrc: 'sun.svg',
+                day: dataR[0].list[39].dt, temperature: dataR[0].list[39].main.temp, unit: '&#176;C', imgsrc: 'http://openweathermap.org/img/w/'+dataR[0].list[39].weather[0].icon+'.png',
             },
 
-        ]);
+        ])}
 
         return [
             layout,
