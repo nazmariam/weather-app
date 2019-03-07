@@ -2,7 +2,7 @@ export const bindAll = (context, ...names) => {
     names.forEach(name => context[name] = context[name].bind(context));
 };
 export const dayOfWeek = (timestamp)=>{
-    let xx = new Date();
-    xx.setTime(timestamp*1000);
-    return xx.toUTCString().slice(0,3);
+    let xx = new Date(timestamp*1000);
+    let options = {weekday:'short'}
+    return new Intl.DateTimeFormat('en-US', options).format(xx)
 };

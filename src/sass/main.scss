@@ -1,9 +1,18 @@
+html {
+  height: 100%;
+}
 body{
-  background: url("../images/bg.png") 50% no-repeat fixed;
+  background: url("../images/bg.png") top center no-repeat fixed;
   background-size: cover;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .radio-wrapper{
   padding-top: 60px;
+
 }
 .radio{
   width: 768px;
@@ -129,6 +138,8 @@ button{
   padding: 16px;
   box-sizing: border-box;
   color: rgba(255, 255, 255, 0.75);
+
+
   &:before{
     content: " ";
     position: absolute;
@@ -141,7 +152,9 @@ button{
     border-radius: 12px;
   }
 }
-
+caption{
+  margin-bottom: 16px;
+}
 .wheel-img{
   flex: 0 0 40%;
   text-align: center;

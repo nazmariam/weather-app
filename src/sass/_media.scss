@@ -7,6 +7,9 @@
       height: 35px;
     }
   }
+  td,th{
+    padding: 6px;
+  }
   .radio-wrapper {
     padding-top: 28px;
   }
@@ -49,6 +52,9 @@
   .play{
     position: absolute;
     top:-44px;
+  }
+  .top-panel{
+    min-width: 100%;
   }
   .wheel-img{
     padding: 16px 0;
