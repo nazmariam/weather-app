@@ -6,3 +6,12 @@ export const dayOfWeek = (timestamp)=>{
     let options = {weekday:'short'}
     return new Intl.DateTimeFormat('en-US', options).format(xx)
 };
+export const timestampOfDay = (n)=>{
+    let day = new Date();
+    if (!n){
+        day.setDate(day.getDate() + 1);
+    } else {
+        day.setDate(day.getDate() + n);
+    }
+    return day.getTime()/1000;
+};

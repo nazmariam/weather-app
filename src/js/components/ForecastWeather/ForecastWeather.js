@@ -29,7 +29,7 @@ export default class ForecastWeather extends  Component{
                         },
                         {
                             tag: 'span',
-                            content: Math.round(item.temperature)+item.unit,
+                            content: item.temperature?Math.round(item.temperature)+item.unit:'',
                             classList: 'temperature-data',
                         }
                     ]

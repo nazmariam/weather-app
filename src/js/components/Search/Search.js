@@ -49,7 +49,8 @@ export default class Search extends  Component{
                                     {
                                         name: 'placeholder',
                                         value: 'Enter city name or coordinates',
-                                    }
+                                    },
+
                                 ]
                             },
                             {

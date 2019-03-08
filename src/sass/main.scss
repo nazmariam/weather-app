@@ -138,8 +138,7 @@ button{
   padding: 16px;
   box-sizing: border-box;
   color: rgba(255, 255, 255, 0.75);
-
-
+  max-width: 450px;
   &:before{
     content: " ";
     position: absolute;
@@ -154,6 +153,9 @@ button{
 }
 caption{
   margin-bottom: 16px;
+}
+.weather-fm{
+  text-align: center;
 }
 .wheel-img{
   flex: 0 0 40%;
@@ -225,7 +227,7 @@ caption{
     background-color: #6b6b6b;
   }
 }
-.unit-swiсher{
+#switcher{
   .k{
     display:none;
   }
@@ -233,7 +235,7 @@ caption{
     display:block;
   }
 }
-.unit-swiсher.active{
+#switcher.active{
   .k{
     display:block;
   }

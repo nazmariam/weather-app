@@ -18,15 +18,16 @@ class WeatherDataService{
                 return Promise.reject('Weather Server responded ' + response.status)
             })
     }
-    getAllWeatherInfo(query){
+    getAllWeatherInfo(query,unit){
+        console.log(unit);
         return Promise.all
-        ([fetch('https://api.openweathermap.org/data/2.5/forecast?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+'metric', {method:'get'})
+        ([fetch('https://api.openweathermap.org/data/2.5/forecast?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+unit, {method:'get'})
             .then(response => {
                 if(response.ok)
                     return response.json();
                 return Promise.reject('Weather Server responded ' + response.status)
             })
-            ,fetch('https://api.openweathermap.org/data/2.5/weather?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+'metric', {method:'get'})
+            ,fetch('https://api.openweathermap.org/data/2.5/weather?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+unit, {method:'get'})
                 .then(response => {
                     if(response.ok)
                         return response.json();
