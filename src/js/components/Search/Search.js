@@ -7,18 +7,12 @@ export default class Search extends  Component{
     constructor(host, props){
         super(host, props);
 
+    }
+    bindBeforeRender() {
+        // this.render = this.render.bind(this);
         // this.requestWeather = this.requestWeather.bind(this);
-        // bindAll(this, 'requestWeather', 'render');
     }
 
-    // requestWeather(event){
-    //     event.preventDefault();
-    //     let query = document.getElementById('search-weather').value;
-    //     if(query) {
-    //         WeatherDataService.getCurrentWeather(query).then(data=>{this.render(data)});
-    //         WeatherDataService.getWeatherForecast(query).then(data=>{console.log(data)});
-    //     }
-    // }
 
     render(){
         return [
@@ -50,6 +44,10 @@ export default class Search extends  Component{
                                         name: 'placeholder',
                                         value: 'Enter city name or coordinates',
                                     },
+                                    {
+                                        name: 'value',
+                                        value: this.props.city?this.props.city:'',
+                                    }
 
                                 ]
                             },
@@ -65,6 +63,12 @@ export default class Search extends  Component{
                             }
                         ]
                     }
+                ],
+                eventHandlers: [
+                    {
+                        eventType: 'submit',
+                        eventMethod: this.props.onSubmit, // bind(this): constructor(){this.method = this.method.bind(this);}
+                    },
                 ],
 
             }

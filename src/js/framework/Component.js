@@ -1,32 +1,54 @@
 export default class Component {
     constructor(host, props = {}) {
+        this.state = {};
         this.host = host;
         this.props = props;
+        this.bindBeforeRender();
         this._render();
     }
-    _render(dataR) {
-        this.host.innerHTML = "";
-        const content = this.render(dataR);
-
-        if (typeof content === 'string') {
-            this.host.innerHTML = content;
-        } else {
-            content.map(item => this._vDomPrototypeElementToHtmlElement(item))
-                .forEach(htmlElement => {
-                    this.host.appendChild(htmlElement);
-                });
-        }
+    bindBeforeRender() {
+        this.updateState = this.updateState.bind(this);
     }
 
+    _render() {
+        this.host.innerHTML = "";
+        let content = this.render();
+
+        if (!Array.isArray(content)) {
+            content = [ content ];
+        }
+
+        content.map(item => this._vDomPrototypeElementToHtmlElement(item)) // [string|HTMLElement] => [HTMLElement]
+            .forEach(htmlElement => {
+                this.host.appendChild(htmlElement);
+            });
+    }
+
+
+    updateState(state) {
+        console.log('ffffuuuu' ,state);
+        const nextState = Object.assign({}, this.state, state);
+
+        this.state = nextState;
+        this._render();
+
+        return nextState;
+    }
     render() {
         return 'OMG! They wanna see me!';
     }
 
     _vDomPrototypeElementToHtmlElement(element) {
         if (typeof element === 'string') {
-            const htmlElement = document.createElement('div');
-            htmlElement.innerHTML = element;
-            return htmlElement;
+            let container;
+            const containsHtmlTags = /[<>&]/.test(element);
+            if (containsHtmlTags) {
+                container = document.createElement('div');
+                container.innerHTML = element;
+            } else {
+                container = document.createTextNode(element);
+            }
+            return container;
         } else {
             if (element.tag) {
                 if (typeof element.tag === 'function') {

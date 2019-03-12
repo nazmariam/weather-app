@@ -7,13 +7,19 @@ export default class ActualWeather extends  Component{
 
 
     render(){
-        return  [
+        const { city, currentWeather, unit } = this.props;
+
+        const tempUnits = (unit=="metric") ? "&#176;C" : "&#176;F";
+        const speedUnits = (unit=="metric") ? "m/s" : "mph";
+
+        if(currentWeather){
+            return  [
             {
                 tag: 'table',
                 children: [
                     {
                         tag: 'caption',
-                        content: this.props.city?this.props.city[1].name+',&nbsp;'+this.props.city[1].sys.country:'',
+                        content: city,
                         classList: 'city-name',
                     },
                     {
@@ -48,22 +54,22 @@ export default class ActualWeather extends  Component{
                             {
                                 tag: 'td',
                                 classList: 'temperature-data',
-                                content: this.props.temperature?this.props.temperature[1].main.temp + this.props.unit:'',
+                                content: currentWeather?Math.round(currentWeather.main.temp) +'<br>'+ tempUnits:'',
                             },
                             {
                                 tag: 'td',
                                 classList: 'humidity-data',
-                                content: this.props.humidity?this.props.humidity[1].main.humidity + '%':'',
+                                content: currentWeather?currentWeather.main.humidity +'<br>'+ '%':'',
                             },
                             {
                                 tag: 'td',
                                 classList: 'wind-data',
-                                content: this.props.wind?this.props.wind[1].wind.speed + 'km/h':'',
+                                content: currentWeather?currentWeather.wind.speed +'<br>'+ speedUnits:'',
                             },
                             {
                                 tag: 'td',
                                 classList: 'pressure-data',
-                                content: this.props.pressure?this.props.pressure[1].main.pressure + 'atm':'',
+                                content: currentWeather?currentWeather.main.pressure +'<br>'+ 'hPa':'',
                             },
                         ]
                     }
@@ -71,7 +77,7 @@ export default class ActualWeather extends  Component{
             }
 
 
-                ]
+                ]}else{return `<h4 class="weather-fm">Weather FM</h4>`}
     }
 }
 

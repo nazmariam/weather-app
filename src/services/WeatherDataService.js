@@ -1,38 +1,29 @@
-class WeatherDataService{
-    constructor(){
+class WeatherDataService {
+    constructor() {
 
     }
-    getCurrentWeather(query) {
-           return fetch('https://api.openweathermap.org/data/2.5/weather?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+'metric', {method:'get'})
-                .then(response => {
-                    if(response.ok)
-                        return response.json();
-                    return Promise.reject('Weather Server responded ' + response.status)
-                })
-    }
-    getWeatherForecast(query) {
-        return fetch('https://api.openweathermap.org/data/2.5/forecast?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+'metric', {method:'get'})
+
+    getWeatherForecast(query,unit) {
+        return fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + query + '&APPID=' + 'c252c73aab29bec59ad61241d38d8981' + '&units=' + unit, {method: 'get'})
             .then(response => {
-                if(response.ok)
+                if (response.ok)
                     return response.json();
                 return Promise.reject('Weather Server responded ' + response.status)
             })
     }
-    getAllWeatherInfo(query,unit){
-        console.log(unit);
+    getCurrentWeather(query,unit) {
+        return fetch('https://api.openweathermap.org/data/2.5/weather?q=' + query + '&APPID=' + 'c252c73aab29bec59ad61241d38d8981' + '&units=' + unit, {method: 'get'})
+            .then(response => {
+                if (response.ok)
+                    return response.json();
+                return Promise.reject('Weather Server responded ' + response.status)
+            })
+    }
+
+    getAllWeatherInfo(query, unit) {
         return Promise.all
-        ([fetch('https://api.openweathermap.org/data/2.5/forecast?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+unit, {method:'get'})
-            .then(response => {
-                if(response.ok)
-                    return response.json();
-                return Promise.reject('Weather Server responded ' + response.status)
-            })
-            ,fetch('https://api.openweathermap.org/data/2.5/weather?q='+query+'&APPID='+'c252c73aab29bec59ad61241d38d8981'+'&units='+unit, {method:'get'})
-                .then(response => {
-                    if(response.ok)
-                        return response.json();
-                    return Promise.reject('Weather Server responded ' + response.status)
-                })])
+        ([this.getCurrentWeather(query,unit),
+                 this.getWeatherForecast(query,unit)])
     }
 }
 
