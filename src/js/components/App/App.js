@@ -125,11 +125,16 @@ export default class App extends Component{
                 document.getElementById('search-weather').value=elem.textContent.trim();
                 document.querySelector('.search-button').click();
             }
-        })
+        });
 
         like.addEventListener('click', function(e) {
-            e.preventDefault();
             addToStorage(city,'likedStorage');
+            if(document.querySelector('.liked-item').classList.contains('special')){
+                let newItem = document.createElement('div');
+                newItem.classList.add('liked-item');
+                newItem.innerHTML=city+'<span class="remove"></span>';
+                document.querySelector('.liked-item').parentNode.appendChild(newItem);
+            }
         });
 
         let historyButton = layout.getElementById('history');

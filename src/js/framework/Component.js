@@ -28,7 +28,6 @@ export default class Component {
         const nextState = Object.assign({}, this.state, state);
         this.state = nextState;
         this._render(this.state);
-        console.log('!');
         return nextState;
     }
     render() {

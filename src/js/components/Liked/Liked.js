@@ -13,7 +13,7 @@ export default class Liked extends  Component {
     return (data)?resultArr.map((item)=>(
         {
             tag: 'div',
-            classList:'liked-item',
+            classList:['liked-item','special'],
             content: item+` <span class="remove"></span>`,
 
         }
