@@ -20,11 +20,12 @@ export const addToStorage = (item,key)=>{
         JSON.parse(localStorage[key]) : [];
     let newData = data.slice();
     if(item){
+
+        if(newData.indexOf(item)===-1){newData.push(item)}
         if(key==='likedStorage'){
-            if(newData.indexOf(item)===-1){newData.push(item)}
             if(newData.length===6){newData.shift()}
         }else if(key==='historyStorage'){
-            newData.push(item);
+            // newData.push(item);
             if(newData.length===24){newData.shift()}
         }
         localStorage[key] = JSON.stringify(newData);
@@ -37,8 +38,6 @@ export const removeFromStorage = (item,key)=>{
     let newData = data.slice();
 
     let ind = newData.indexOf(item);
-    console.log(item, newData);
     newData.splice(ind,1);
-
     localStorage[key] = JSON.stringify(newData);
 };

@@ -16,6 +16,9 @@ class WeatherDataService {
             .then(response => {
                 if (response.ok)
                     return response.json();
+                if (response.status===404){
+                    document.getElementById('today-weather').innerHTML='Nothing found. Check your city name.'
+                }
                 return Promise.reject('Weather Server responded ' + response.status)
             })
     }

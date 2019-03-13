@@ -18,9 +18,7 @@ export default class App extends Component{
             radioPlay:false,
         };
     }
-
     bindBeforeRender() {
-        // this.render = this.render.bind(this);
         this.requestWeather = this.requestWeather.bind(this);
     }
 
@@ -33,7 +31,6 @@ export default class App extends Component{
         this.state.city = document.getElementById('search-weather').value;
 
         if(this.state.city){this.getCityForecast(this.state.city, this.state.unit).then((data)=>{
-            console.log('getCityForecast - ', data);
             addToStorage(data.loc,'historyStorage');
             this.updateState({
                             city: data.loc,
@@ -64,14 +61,13 @@ export default class App extends Component{
             })
     }
 
-    render(){
+    render(st){
         const {
             city,
             currentWeather,
             forecastWeather,
             unit,
         } = this.state;
-        console.log('STATE: ',this.state);
         let layout = document.createDocumentFragment();
         let radio = document.createElement('div');
         radio.classList.add('radio');
@@ -166,6 +162,7 @@ export default class App extends Component{
             } else {
                 unitButton.setAttribute('data-unit','metric');
             }
+            document.querySelector('.search-button').click();
         });
         layout.querySelector('.button-block').prepend(unitButton);
 

@@ -10,9 +10,9 @@ export default class Component {
         this.updateState = this.updateState.bind(this);
     }
 
-    _render() {
+    _render(st) {
         this.host.innerHTML = "";
-        let content = this.render();
+        let content = this.render(st);
 
         if (!Array.isArray(content)) {
             content = [ content ];
@@ -24,14 +24,11 @@ export default class Component {
             });
     }
 
-
     updateState(state) {
-        console.log('ffffuuuu' ,state);
         const nextState = Object.assign({}, this.state, state);
-
         this.state = nextState;
-        this._render();
-
+        this._render(this.state);
+        console.log('!');
         return nextState;
     }
     render() {
