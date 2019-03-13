@@ -15,3 +15,30 @@ export const timestampOfDay = (n)=>{
     }
     return day.getTime()/1000;
 };
+export const addToStorage = (item,key)=>{
+    const data = (localStorage[key]) ?
+        JSON.parse(localStorage[key]) : [];
+    let newData = data.slice();
+    if(item){
+        if(key==='likedStorage'){
+            if(newData.indexOf(item)===-1){newData.push(item)}
+            if(newData.length===6){newData.shift()}
+        }else if(key==='historyStorage'){
+            newData.push(item);
+            if(newData.length===24){newData.shift()}
+        }
+        localStorage[key] = JSON.stringify(newData);
+    }
+
+};
+export const removeFromStorage = (item,key)=>{
+    const data = (localStorage[key]) ?
+        JSON.parse(localStorage[key]) : [];
+    let newData = data.slice();
+
+    let ind = newData.indexOf(item);
+    console.log(item, newData);
+    newData.splice(ind,1);
+
+    localStorage[key] = JSON.stringify(newData);
+};

@@ -2,8 +2,10 @@ import Component from "../../framework/Component";
 import {ActualWeather} from "../ActualWeather";
 import {ForecastWeather} from "../ForecastWeather";
 import {Search} from "../Search";
-import WeatherDataService from "../../../services/WeatherDataService"
-import {timestampOfDay, dayOfWeek} from "../../utils/helpers"
+import WeatherDataService from "../../../services/WeatherDataService";
+import {Liked} from '../Liked';
+import {History} from '../History';
+import {timestampOfDay, dayOfWeek, addToStorage, removeFromStorage} from "../../utils/helpers"
 
 export default class App extends Component{
     constructor(host, dataR={}){
@@ -25,11 +27,14 @@ export default class App extends Component{
     requestWeather(event){
         event.preventDefault();
         event.stopPropagation();
+
         this.state.unit = document.getElementById('switcher').getAttribute('data-unit');
         this.state.radioPlay = document.querySelector('.play').classList.contains('active');
         this.state.city = document.getElementById('search-weather').value;
-        this.getCityForecast(this.state.city, this.state.unit).then((data)=>{
+
+        if(this.state.city){this.getCityForecast(this.state.city, this.state.unit).then((data)=>{
             console.log('getCityForecast - ', data);
+            addToStorage(data.loc,'historyStorage');
             this.updateState({
                             city: data.loc,
                             currentWeather: data.todayForecast,
@@ -37,9 +42,10 @@ export default class App extends Component{
                             unit: this.state.unit
                         });
             });
-    }
+    }}
 
     computeNextState(data) {
+
         return {
             loc:data[0].name+', '+data[0].sys.country,
             todayForecast: data[0],
@@ -77,8 +83,8 @@ export default class App extends Component{
                         
                     </ul>
                     <div class="button-block">
-                        <button class="liked-cities">Liked</button>
-                        <button class="history">History</button>
+                        <button id='liked' class="liked-cities">Liked</button>
+                        <button id="history" class="history">History</button>
                     </div>
                 </div>
             </nav>
@@ -89,11 +95,13 @@ export default class App extends Component{
                 </span>
                     <span id="searchForm">
                     </span>
-                    <button type="button">Like</button>
+                    <button id="like" type="button">Like</button>
                 </div>
                 <div class="container">
-                    <div class="top-panel" id="today-weather">
+                    <div class="top-panel">
+                        <div class="top-panel-content" id="today-weather">
                         
+                        </div>
                     </div>
                     <div class="wheel-img">
                         <img src="handler.png" alt="">
@@ -104,6 +112,35 @@ export default class App extends Component{
             <section class="legs"></section>
         `;
         layout.appendChild(radio);
+
+        let liked = layout.getElementById('liked');
+        liked.addEventListener('click', function (e) {
+            e.preventDefault();
+            new Liked(todayWeather);
+        });
+        let like = layout.getElementById('like');
+        layout.querySelector('.top-panel-content').addEventListener('click',function (e) {
+            let elem = e.target;
+            if(elem.classList.contains('remove')){
+                removeFromStorage(elem.parentNode.textContent.trim(),'likedStorage');
+                elem.parentNode.remove();
+            }
+            if(elem.classList.contains('liked-item')){
+                document.getElementById('search-weather').value=elem.textContent.trim();
+                document.querySelector('.search-button').click();
+            }
+        })
+
+        like.addEventListener('click', function(e) {
+            e.preventDefault();
+            addToStorage(city,'likedStorage');
+        });
+
+        let historyButton = layout.getElementById('history');
+        historyButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            new History(todayWeather);
+        });
 
         let search = layout.getElementById('searchForm');
         new Search(search,{

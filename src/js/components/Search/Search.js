@@ -53,6 +53,7 @@ export default class Search extends  Component{
                             },
                             {
                                 tag: 'button',
+                                classList:'search-button',
                                 content: 'Search',
                                 attributes:[
                                     {

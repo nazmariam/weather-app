@@ -135,21 +135,35 @@ button{
   position: relative;
   border-radius: 24px;
   background:   linear-gradient(0.25turn, #3f5769, #6b8ea3);
-  min-height: 200px;
-  padding: 16px;
+
   box-sizing: border-box;
   color: rgba(255, 255, 255, 0.75);
   max-width: 450px;
-  &:before{
-    content: " ";
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 8px solid #335d6e;
-    border-radius: 12px;
+}
+.top-panel-content{
+  border: 8px solid #335d6e;
+  border-radius: 12px;
+  height: 200px;
+  padding: 16px;
+  overflow-y: auto;
+}
+.liked-item:first-child{
+    cursor: auto;
+    .remove{
+      display: none;
+    }
+  }
+.liked-item{
+  cursor:pointer;
+  .remove{
+    font-size: 1.2em;
+    &:before{
+      content: "\00d7";
+    }
+
+    &:hover {
+      color: #111025;
+    }
   }
 }
 caption{
