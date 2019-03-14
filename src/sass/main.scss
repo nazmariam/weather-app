@@ -278,7 +278,9 @@ footer{
     margin: 0 16px;
   }
 }
-
+select{
+  display: none;
+}
 @keyframes infinite-spinning {
   from {
     transform: rotate(0deg);

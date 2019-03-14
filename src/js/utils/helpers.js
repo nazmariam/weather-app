@@ -41,3 +41,13 @@ export const removeFromStorage = (item,key)=>{
     newData.splice(ind,1);
     localStorage[key] = JSON.stringify(newData);
 };
+
+export const speaker = (word)=>{
+    let synth = window.speechSynthesis;
+    if (word !== '') {
+        let utterThis = new SpeechSynthesisUtterance(word);
+        utterThis.pitch = 1;
+        utterThis.rate = 1;
+        synth.speak(utterThis);
+    }
+};

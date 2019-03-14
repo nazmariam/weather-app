@@ -5,7 +5,7 @@ import {Search} from "../Search";
 import WeatherDataService from "../../../services/WeatherDataService";
 import {Liked} from '../Liked';
 import {History} from '../History';
-import {timestampOfDay, dayOfWeek, addToStorage, removeFromStorage} from "../../utils/helpers"
+import {addToStorage, removeFromStorage, speaker} from "../../utils/helpers"
 
 export default class App extends Component{
     constructor(host, dataR={}){
@@ -29,7 +29,6 @@ export default class App extends Component{
         this.state.unit = document.getElementById('switcher').getAttribute('data-unit');
         this.state.radioPlay = document.querySelector('.play').classList.contains('active');
         this.state.city = document.getElementById('search-weather').value;
-
         if(this.state.city){this.getCityForecast(this.state.city, this.state.unit).then((data)=>{
             addToStorage(data.loc,'historyStorage');
             this.updateState({
@@ -42,6 +41,12 @@ export default class App extends Component{
     }}
 
     computeNextState(data) {
+        let un = 'degrees centigrade';
+        if (this.state.unit==='imperial'){
+            un = 'degrees fahrenheit'
+        }
+        const speedUnits = (this.state.unit==="metric") ? "m/s" : "mph";
+        speaker("beep. beep. beeeep. Current weather in "+data[0].name+'is. temperature'+Math.round(data[0].main.temp)+un+'. Humidity:'+data[0].main.humidity+"%. Wind speed:"+data[0].wind.speed+speedUnits+". Pressure:"+data[0].main.pressure+"hPa. Please, stay tuned!");
 
         return {
             loc:data[0].name+', '+data[0].sys.country,
@@ -68,6 +73,8 @@ export default class App extends Component{
             forecastWeather,
             unit,
         } = this.state;
+        var synth = window.speechSynthesis;
+
         let layout = document.createDocumentFragment();
         let radio = document.createElement('div');
         radio.classList.add('radio');
@@ -129,11 +136,13 @@ export default class App extends Component{
 
         like.addEventListener('click', function(e) {
             addToStorage(city,'likedStorage');
-            if(document.querySelector('.liked-item').classList.contains('special')){
-                let newItem = document.createElement('div');
-                newItem.classList.add('liked-item');
-                newItem.innerHTML=city+'<span class="remove"></span>';
-                document.querySelector('.liked-item').parentNode.appendChild(newItem);
+            if(document.querySelector('.liked-item')){
+                if(document.querySelector('.liked-item').classList.contains('special')){
+                    let newItem = document.createElement('div');
+                    newItem.classList.add('liked-item');
+                    newItem.innerHTML=city+'<span class="remove"></span>';
+                    document.querySelector('.liked-item').parentNode.appendChild(newItem);
+                }
             }
         });
 
