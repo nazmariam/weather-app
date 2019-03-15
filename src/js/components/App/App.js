@@ -46,7 +46,7 @@ export default class App extends Component{
             un = 'degrees fahrenheit'
         }
         const speedUnits = (this.state.unit==="metric") ? "m/s" : "mph";
-        speaker("beep. beep. beeeep. Current weather in "+data[0].name+'is. temperature'+Math.round(data[0].main.temp)+un+'. Humidity:'+data[0].main.humidity+"%. Wind speed:"+data[0].wind.speed+speedUnits+". Pressure:"+data[0].main.pressure+"hPa. Please, stay tuned!");
+        speaker("beep. beep. beeeep. Current weather in "+data[0].name+'is. temperature'+Math.round(data[0].main.temp)+un+'. Humidity:'+data[0].main.humidity+"%. Wind speed:"+data[0].wind.speed+speedUnits+". Pressure:"+data[0].main.pressure+"hPa. Please, stay tuned on Weather FM!");
 
         return {
             loc:data[0].name+', '+data[0].sys.country,
@@ -74,6 +74,12 @@ export default class App extends Component{
             unit,
         } = this.state;
         var synth = window.speechSynthesis;
+
+        // window.addEventListener('mousemove',function (e) {
+        //        let moved = window.onmousemove;
+        //        const bg = document.querySelector('.clouds');
+        //        bg.style.top = -(moved*0.2)+'px';
+        // })
 
         let layout = document.createDocumentFragment();
         let radio = document.createElement('div');

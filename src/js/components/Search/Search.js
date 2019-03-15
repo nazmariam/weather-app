@@ -1,7 +1,5 @@
 import Component from "../../framework/Component";
-import WeatherDataService from "../../../services/WeatherDataService";
-import {App} from "../App";
-import {bindAll} from "../../utils/helpers"
+import {CITIES} from "../../utils/min"
 
 export default class Search extends  Component{
     constructor(host, props){
@@ -9,8 +7,44 @@ export default class Search extends  Component{
 
     }
     bindBeforeRender() {
-        // this.render = this.render.bind(this);
-        // this.requestWeather = this.requestWeather.bind(this);
+        this.onInput = this.onInput.bind(this);
+        this.onCityClick = this.onCityClick.bind(this);
+    }
+
+    onInput(e) {
+        const ul = document.querySelector('.search-list');
+        let items = '';
+
+        const showCities = (value, cities) => {
+            const matchArray = findCities(value, cities);
+            items = matchArray.map(item => {
+                return '<li class="search-list-item">'+item.name+' '+item.country+'</li>';
+            }).join('');
+
+            if(e.target.value.length > 0){
+                ul.innerHTML = items;
+            } else{
+                ul.innerHTML = '';
+            }
+        };
+        const findCities = (value, cities) => {
+            return cities.filter(city => {
+                const regex = new RegExp(value, 'gi');
+                return city.name.match(regex);
+            });
+        };
+
+        if(e.target.value.length > 2){
+            showCities(e.target.value, CITIES);
+        } else{
+            ul.innerHTML = '';
+        }
+    };
+    onCityClick(e){
+        if(e.target.classList.contains('search-list-item')){
+            document.querySelector('.search-weather').value = e.target.innerHTML.slice(0,-3)+', '+e.target.innerHTML.slice(-2);
+            document.querySelector('.search-button').click();
+        }
     }
 
 
@@ -42,13 +76,23 @@ export default class Search extends  Component{
                                     },
                                     {
                                         name: 'placeholder',
-                                        value: 'Enter city name or coordinates',
+                                        value: 'Enter city name',
+                                    },
+                                    {
+                                      name: 'autocomplete',
+                                      value:'off'
                                     },
                                     {
                                         name: 'value',
                                         value: this.props.city?this.props.city:'',
                                     }
 
+                                ],
+                                eventHandlers: [
+                                    {
+                                        eventType: 'input',
+                                        eventMethod: this.onInput,
+                                    }
                                 ]
                             },
                             {
@@ -65,6 +109,7 @@ export default class Search extends  Component{
                         ]
                     }
                 ],
+
                 eventHandlers: [
                     {
                         eventType: 'submit',
@@ -72,6 +117,16 @@ export default class Search extends  Component{
                     },
                 ],
 
+            },
+            {
+                tag: 'ul',
+                classList: 'search-list',
+                eventHandlers: [
+                    {
+                        eventType: 'click',
+                        eventMethod: this.onCityClick,
+                    }
+                ]
             }
         ]
     }

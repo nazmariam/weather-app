@@ -214,6 +214,7 @@ caption{
   border-radius: 12px;
   color: rgba(255, 255, 255, 0.75);
   margin-right: 8px;
+  position: relative;
   &::placeholder{
     color: rgba(255, 255, 255, 0.35);
   }
@@ -280,6 +281,22 @@ footer{
 }
 select{
   display: none;
+}
+.search-list{
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.65);
+  z-index: 2;
+  left: 90px;
+  padding: 0;
+  max-height: 270px;
+  overflow: auto;
+  border-radius: 8px;
+}
+.search-list-item{
+  list-style: none;
+  margin: 4px;
+  padding: 8px;
+  cursor: pointer;
 }
 @keyframes infinite-spinning {
   from {
