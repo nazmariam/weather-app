@@ -6,10 +6,12 @@ import WeatherDataService from "../../services/WeatherDataService";
 import {Liked} from '../Liked';
 import {History} from '../History';
 import {addToStorage, removeFromStorage, speaker} from "../../utils/helpers"
+import AppState from "../../services/AppState";
 
 export default class App extends Component{
     constructor(host, props={}){
         super(host, props);
+        // AppState.watch('props',this.updateMyself);
     }
     bindBeforeRender() {
         // this.requestWeather = this.requestWeather.bind(this);
@@ -24,17 +26,12 @@ export default class App extends Component{
     }
     // updateMyself(subState) {
     //     // .... transform response
-    //     let un = 'degrees centigrade';
-    //     if (this.state.unit==='imperial'){
-    //         un = 'degrees fahrenheit'
-    //     }
-    //     speaker("beep. beep. beeeep. Current temperature in "+subState[0].name+'is. '+Math.round(subState[0].main.temp)+un+". Please, stay tuned on Weather FM!");
-    //
-    //     let newState= {
-    //         city:subState[0].name+', '+subState[0].sys.country,
-    //         currentWeather: subState[0],
-    //         forecastWeather: subState[1],
-    //         unit: this.state.unit};
+    //     console.log('?',subState);
+    //            let newState= {
+    //         city:subState[0][0].name+', '+subState[0][0].sys.country,
+    //         currentWeather: subState[0][0],
+    //         forecastWeather: subState[0][1],
+    //         unit: subState[1]};
     //     // do update
     //     this.updateState(newState);
     // }
@@ -137,7 +134,8 @@ export default class App extends Component{
         });
 
         like.addEventListener('click', function(e) {
-            addToStorage(city,'likedStorage');
+            console.log(this.state.city);
+            addToStorage(this.state.city,'likedStorage');
             if(document.querySelector('.liked-item')){
                 if(document.querySelector('.liked-item').classList.contains('special')){
                     let newItem = document.createElement('div');
@@ -155,10 +153,7 @@ export default class App extends Component{
         });
 
         let search = layout.getElementById('searchForm');
-        new Search(search,{
-            // city: city,
-            // onSubmit: this.requestWeather,
-        });
+        new Search(search);
 
         let unitButton = document.createElement('button');
         unitButton.classList.add('unit-switcher');
@@ -205,10 +200,10 @@ export default class App extends Component{
 
 
         let todayWeather = layout.getElementById('today-weather');
-        this.currentWeather = new ActualWeather(todayWeather, {city: city, currentWeather:currentWeather, unit:unit});
+        this.currentWeather = new ActualWeather(todayWeather);
 
         let forecastHost = layout.getElementById('forecast-list');
-        this.forecastWeather = new ForecastWeather(forecastHost,{forecastWeather: forecastWeather, unit: unit});
+        this.forecastWeather = new ForecastWeather(forecastHost);
 
         return [
             layout,

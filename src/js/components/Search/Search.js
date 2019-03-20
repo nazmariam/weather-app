@@ -28,12 +28,12 @@ export default class Search extends  Component{
         let newState=this.state;
         if(subState[0]){
             newState= {
-                city:subState[0].name+', '+subState[0].sys.country,
-                currentWeather: subState[0],
-                forecastWeather: subState[1],
-                unit: this.state.unit};
+                city:subState[0][0].name+', '+subState[0][0].sys.country,
+                currentWeather: subState[0][0],
+                forecastWeather: subState[0][1],
+                unit: subState[1]};
         }
-
+console.log(newState);
         // do update
         // AppState.update('props',newState);
         let un = 'degrees centigrade';
@@ -67,7 +67,7 @@ export default class Search extends  Component{
                 if (!data) {
                     return;
                 }
-                return AppState.update('props',data);
+                return AppState.update('props',[data,unit]);
             })
     }
 

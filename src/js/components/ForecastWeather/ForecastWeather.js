@@ -24,10 +24,10 @@ export default class ForecastWeather extends  Component{
         //
 
         let newState= {
-            city:subState[0].name+', '+subState[0].sys.country,
-            currentWeather: subState[0],
-            forecastWeather: subState[1],
-            unit: this.state.unit};
+            city:subState[0][0].name+', '+subState[0][0].sys.country,
+            currentWeather: subState[0][0],
+            forecastWeather: subState[0][1],
+            unit: subState[1]};
         // do update
         this.updateState(newState);
     }
@@ -36,7 +36,7 @@ export default class ForecastWeather extends  Component{
         let forecastObj = this.state.forecastWeather;
         let unit = this.state.unit;
         if (forecastObj){
-            forecast = forecastObj.list.filter((item,i)=>{return (i%8==0)});
+            forecast = forecastObj.list.filter((item,i)=>{return (i%8===0)});
         }
         const tempUnit = (unit==='metric') ? " &#176;C" : " &#176;F";
         return forecast.map((item) =>
