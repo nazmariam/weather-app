@@ -6,6 +6,14 @@ export default class History extends  Component {
     }
 
     render() {
+        document.querySelector('.top-panel-content').addEventListener('click',function (e) {
+            let elem = e.target;
+            if(elem.classList.contains('liked-item')){
+                document.getElementById('search-weather').value=elem.textContent.trim();
+                document.querySelector('.search-button').click();
+            }
+        });
+
         let data = JSON.parse(localStorage.getItem('historyStorage'));
         let resultArr =[];
         if(data){resultArr = Object.values(data)}

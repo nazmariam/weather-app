@@ -2,20 +2,15 @@ import Component from "../../framework/Component";
 import {ActualWeather} from "../ActualWeather";
 import {ForecastWeather} from "../ForecastWeather";
 import {Search} from "../Search";
-import WeatherDataService from "../../services/WeatherDataService";
 import {Liked} from '../Liked';
 import {History} from '../History';
-import {addToStorage, removeFromStorage, speaker} from "../../utils/helpers"
-import AppState from "../../services/AppState";
+import {addToStorage, removeFromStorage} from "../../utils/helpers"
 
 export default class App extends Component{
     constructor(host, props={}){
         super(host, props);
-        // AppState.watch('props',this.updateMyself);
     }
     bindBeforeRender() {
-        // this.requestWeather = this.requestWeather.bind(this);
-        // this.updateMyself = this.updateMyself.bind(this);
         this.state = {
             city: '',
             currentWeather: null,
@@ -24,56 +19,8 @@ export default class App extends Component{
             radioPlay:false,
         };
     }
-    // updateMyself(subState) {
-    //     // .... transform response
-    //     console.log('?',subState);
-    //            let newState= {
-    //         city:subState[0][0].name+', '+subState[0][0].sys.country,
-    //         currentWeather: subState[0][0],
-    //         forecastWeather: subState[0][1],
-    //         unit: subState[1]};
-    //     // do update
-    //     this.updateState(newState);
-    // }
-    //
-    // requestWeather(event){
-    //     event.preventDefault();
-    //     event.stopPropagation();
-    //     this.state.unit = document.getElementById('switcher').getAttribute('data-unit');
-    //     this.state.radioPlay = document.querySelector('.play').classList.contains('active');
-    //     this.state.city = document.getElementById('search-weather').value;
-    //     if(this.state.city){this.getCityForecast(this.state.city, this.state.unit).then((data)=>{
-    //         addToStorage(this.state.city,'historyStorage');
-    //         });
-    // }}
-    //
-    // getCityForecast(city, unit) {
-    //     return WeatherDataService
-    //         .getAllWeatherInfo(city, unit)
-    //         .then(data => {
-    //             if (!data) {
-    //                 return;
-    //             }
-    //             return this.updateMyself(data)
-    //         })
-    // }
 
-    render(st){
-        const {
-            city,
-            currentWeather,
-            forecastWeather,
-            unit,
-            radioPlay
-        } = this.state;
-        // let synth = window.speechSynthesis;
-
-        // window.addEventListener('mousemove',function (e) {
-        //        let moved = window.onmousemove;
-        //        const bg = document.querySelector('.clouds');
-        //        bg.style.top = -(moved*0.2)+'px';
-        // })
-
+    render(){
         let layout = document.createDocumentFragment();
         let radio = document.createElement('div');
         radio.classList.add('radio');
@@ -120,40 +67,12 @@ export default class App extends Component{
             e.preventDefault();
             new Liked(todayWeather);
         });
-        let like = layout.getElementById('like');
-        layout.querySelector('.top-panel-content').addEventListener('click',function (e) {
-            let elem = e.target;
-            if(elem.classList.contains('remove')){
-                removeFromStorage(elem.parentNode.textContent.trim(),'likedStorage');
-                elem.parentNode.remove();
-            }
-            if(elem.classList.contains('liked-item')){
-                document.getElementById('search-weather').value=elem.textContent.trim();
-                document.querySelector('.search-button').click();
-            }
-        });
 
-        like.addEventListener('click', function(e) {
-            console.log(this.state.city);
-            addToStorage(this.state.city,'likedStorage');
-            if(document.querySelector('.liked-item')){
-                if(document.querySelector('.liked-item').classList.contains('special')){
-                    let newItem = document.createElement('div');
-                    newItem.classList.add('liked-item');
-                    newItem.innerHTML=city+'<span class="remove"></span>';
-                    document.querySelector('.liked-item').parentNode.appendChild(newItem);
-                }
-            }
-        });
-
-        let historyButton = layout.getElementById('history');
-        historyButton.addEventListener('click', function (e) {
-            e.preventDefault();
+        layout.getElementById('history').addEventListener('click', function () {
             new History(todayWeather);
         });
 
-        let search = layout.getElementById('searchForm');
-        new Search(search);
+        new Search(layout.getElementById('searchForm'));
 
         let unitButton = document.createElement('button');
         unitButton.classList.add('unit-switcher');
