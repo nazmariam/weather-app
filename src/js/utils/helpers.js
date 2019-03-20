@@ -4,7 +4,7 @@ export const bindAll = (context, ...names) => {
 export const dayOfWeek = (timestamp)=>{
     let xx = new Date(timestamp*1000);
     let options = {weekday:'short'}
-    return new Intl.DateTimeFormat('en-US', options).format(xx)
+    return new Intl.DateTimeFormat('en-US', options).format(xx);
 };
 export const timestampOfDay = (n)=>{
     let day = new Date();
@@ -26,7 +26,7 @@ export const addToStorage = (item,key)=>{
             if(newData.length===6){newData.shift()}
         }else if(key==='historyStorage'){
             // newData.push(item);
-            if(newData.length===24){newData.shift()}
+            if(newData.length===25){newData.shift()}
         }
         localStorage[key] = JSON.stringify(newData);
     }

@@ -1,13 +1,12 @@
 export default class Component {
     constructor(host, props = {}) {
-        this.state = {};
         this.host = host;
         this.props = props;
         this.bindBeforeRender();
         this._render();
     }
     bindBeforeRender() {
-        this.updateState = this.updateState.bind(this);
+        // this.updateState = this.updateState.bind(this);
     }
 
     _render(st) {

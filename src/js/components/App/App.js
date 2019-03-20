@@ -2,14 +2,18 @@ import Component from "../../framework/Component";
 import {ActualWeather} from "../ActualWeather";
 import {ForecastWeather} from "../ForecastWeather";
 import {Search} from "../Search";
-import WeatherDataService from "../../../services/WeatherDataService";
+import WeatherDataService from "../../services/WeatherDataService";
 import {Liked} from '../Liked';
 import {History} from '../History';
 import {addToStorage, removeFromStorage, speaker} from "../../utils/helpers"
 
 export default class App extends Component{
-    constructor(host, dataR={}){
-        super(host, dataR);
+    constructor(host, props={}){
+        super(host, props);
+    }
+    bindBeforeRender() {
+        // this.requestWeather = this.requestWeather.bind(this);
+        // this.updateMyself = this.updateMyself.bind(this);
         this.state = {
             city: '',
             currentWeather: null,
@@ -18,53 +22,44 @@ export default class App extends Component{
             radioPlay:false,
         };
     }
-    bindBeforeRender() {
-        this.requestWeather = this.requestWeather.bind(this);
-    }
-
-    requestWeather(event){
-        event.preventDefault();
-        event.stopPropagation();
-
-        this.state.unit = document.getElementById('switcher').getAttribute('data-unit');
-        this.state.radioPlay = document.querySelector('.play').classList.contains('active');
-        this.state.city = document.getElementById('search-weather').value;
-        if(this.state.city){this.getCityForecast(this.state.city, this.state.unit).then((data)=>{
-            addToStorage(data.loc,'historyStorage');
-            this.updateState({
-                            city: data.loc,
-                            currentWeather: data.todayForecast,
-                            forecastWeather: data.otherDaysForecast,
-                            unit: this.state.unit
-                        });
-            });
-    }}
-
-    computeNextState(data) {
-        let un = 'degrees centigrade';
-        if (this.state.unit==='imperial'){
-            un = 'degrees fahrenheit'
-        }
-        const speedUnits = (this.state.unit==="metric") ? "m/s" : "mph";
-        speaker("beep. beep. beeeep. Current weather in "+data[0].name+'is. temperature'+Math.round(data[0].main.temp)+un+'. Humidity:'+data[0].main.humidity+"%. Wind speed:"+data[0].wind.speed+speedUnits+". Pressure:"+data[0].main.pressure+"hPa. Please, stay tuned on Weather FM!");
-
-        return {
-            loc:data[0].name+', '+data[0].sys.country,
-            todayForecast: data[0],
-            otherDaysForecast: data[1]
-        };
-    }
-
-    getCityForecast(city, unit) {
-        return WeatherDataService
-            .getAllWeatherInfo(city, unit)
-            .then(data => {
-                if (!data) {
-                    return;
-                }
-                return this.computeNextState(data)
-            })
-    }
+    // updateMyself(subState) {
+    //     // .... transform response
+    //     let un = 'degrees centigrade';
+    //     if (this.state.unit==='imperial'){
+    //         un = 'degrees fahrenheit'
+    //     }
+    //     speaker("beep. beep. beeeep. Current temperature in "+subState[0].name+'is. '+Math.round(subState[0].main.temp)+un+". Please, stay tuned on Weather FM!");
+    //
+    //     let newState= {
+    //         city:subState[0].name+', '+subState[0].sys.country,
+    //         currentWeather: subState[0],
+    //         forecastWeather: subState[1],
+    //         unit: this.state.unit};
+    //     // do update
+    //     this.updateState(newState);
+    // }
+    //
+    // requestWeather(event){
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    //     this.state.unit = document.getElementById('switcher').getAttribute('data-unit');
+    //     this.state.radioPlay = document.querySelector('.play').classList.contains('active');
+    //     this.state.city = document.getElementById('search-weather').value;
+    //     if(this.state.city){this.getCityForecast(this.state.city, this.state.unit).then((data)=>{
+    //         addToStorage(this.state.city,'historyStorage');
+    //         });
+    // }}
+    //
+    // getCityForecast(city, unit) {
+    //     return WeatherDataService
+    //         .getAllWeatherInfo(city, unit)
+    //         .then(data => {
+    //             if (!data) {
+    //                 return;
+    //             }
+    //             return this.updateMyself(data)
+    //         })
+    // }
 
     render(st){
         const {
@@ -72,8 +67,9 @@ export default class App extends Component{
             currentWeather,
             forecastWeather,
             unit,
+            radioPlay
         } = this.state;
-        var synth = window.speechSynthesis;
+        // let synth = window.speechSynthesis;
 
         // window.addEventListener('mousemove',function (e) {
         //        let moved = window.onmousemove;
@@ -160,8 +156,8 @@ export default class App extends Component{
 
         let search = layout.getElementById('searchForm');
         new Search(search,{
-            city: city,
-            onSubmit: this.requestWeather,
+            // city: city,
+            // onSubmit: this.requestWeather,
         });
 
         let unitButton = document.createElement('button');

@@ -1,15 +1,76 @@
 import Component from "../../framework/Component";
 import {CITIES} from "../../utils/min"
+import {addToStorage, speaker} from "../../utils/helpers";
+import WeatherDataService from "../../services/WeatherDataService";
+import AppState from "../../services/AppState";
 
 export default class Search extends  Component{
     constructor(host, props){
         super(host, props);
-
+        AppState.watch('props',this.updateMyself);
     }
     bindBeforeRender() {
         this.onInput = this.onInput.bind(this);
         this.onCityClick = this.onCityClick.bind(this);
+        this.requestWeather = this.requestWeather.bind(this);
+        this.updateMyself = this.updateMyself.bind(this);
+        this.state = {
+            city: '',
+            currentWeather: null,
+            forecastWeather: null,
+            unit: 'metric',
+            radioPlay:false,
+        };
     }
+    updateMyself(subState) {
+        // .... transform response
+        console.log(subState);
+        let newState=this.state;
+        if(subState[0]){
+            newState= {
+                city:subState[0].name+', '+subState[0].sys.country,
+                currentWeather: subState[0],
+                forecastWeather: subState[1],
+                unit: this.state.unit};
+        }
+
+        // do update
+        // AppState.update('props',newState);
+        let un = 'degrees centigrade';
+        if (this.state.unit==='imperial'){
+            un = 'degrees fahrenheit'
+        }
+        speaker("beep. beep. beeeep. Current temperature in "+newState.city+'is. '+Math.round(newState.currentWeather.main.temp)+un+". Please, stay tuned on Weather FM!");
+
+        this.updateState(newState);
+    }
+
+    requestWeather(event){
+        event.preventDefault();
+        event.stopPropagation();
+        this.state.unit = document.getElementById('switcher').getAttribute('data-unit');
+        this.state.radioPlay = document.querySelector('.play').classList.contains('active');
+        this.state.city = document.getElementById('search-weather').value;
+        console.log(this.state.city);
+        if(this.state.city){this.getCityForecast(this.state.city, this.state.unit).then((data)=>{
+            addToStorage(this.state.city,'historyStorage');
+        });
+        console.log(this.state);
+
+
+        }}
+
+    getCityForecast(city, unit) {
+        return WeatherDataService
+            .getAllWeatherInfo(city, unit)
+            .then(data => {
+                if (!data) {
+                    return;
+                }
+                return AppState.update('props',data);
+            })
+    }
+
 
     onInput(e) {
         const ul = document.querySelector('.search-list');
@@ -18,7 +79,7 @@ export default class Search extends  Component{
         const showCities = (value, cities) => {
             const matchArray = findCities(value, cities);
             items = matchArray.map(item => {
-                return '<li class="search-list-item">'+item.name+' '+item.country+'</li>';
+                return '<li class="search-list-item">'+item.name+', '+item.country+'</li>';
             }).join('');
 
             if(e.target.value.length > 0){
@@ -42,11 +103,10 @@ export default class Search extends  Component{
     };
     onCityClick(e){
         if(e.target.classList.contains('search-list-item')){
-            document.querySelector('.search-weather').value = e.target.innerHTML.slice(0,-3)+', '+e.target.innerHTML.slice(-2);
+            document.querySelector('.search-weather').value = e.target.innerHTML.trim();
             document.querySelector('.search-button').click();
         }
     }
-
 
     render(){
         return [
@@ -84,7 +144,7 @@ export default class Search extends  Component{
                                     },
                                     {
                                         name: 'value',
-                                        value: this.props.city?this.props.city:'',
+                                        value: this.state.city?this.state.city:'',
                                     }
 
                                 ],
@@ -113,7 +173,7 @@ export default class Search extends  Component{
                 eventHandlers: [
                     {
                         eventType: 'submit',
-                        eventMethod: this.props.onSubmit, // bind(this): constructor(){this.method = this.method.bind(this);}
+                        eventMethod: this.requestWeather, // bind(this): constructor(){this.method = this.method.bind(this);}
                     },
                 ],
 

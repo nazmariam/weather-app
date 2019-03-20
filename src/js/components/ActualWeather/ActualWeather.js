@@ -1,18 +1,42 @@
 import Component from "../../framework/Component";
+import AppState from "../../services/AppState";
+import {speaker} from "../../utils/helpers";
+
 
 export default class ActualWeather extends  Component{
     constructor(host, props){
-        super(host, props)
+        super(host, props);
+        AppState.watch('props',this.updateMyself);
     }
 
+    bindBeforeRender() {
+        // this.requestWeather = this.requestWeather.bind(this);
+        this.updateMyself = this.updateMyself.bind(this);
+        this.state = {
+            city: '',
+            currentWeather: '',
+            unit: 'metric',
+        }
+    };
 
+    updateMyself(subState) {
+        //
+
+        let newState= {
+            city:subState[0].name+', '+subState[0].sys.country,
+            currentWeather: subState[0],
+            forecastWeather: subState[1],
+            unit: this.state.unit};
+        // do update
+        this.updateState(newState);
+    }
     render(){
-        const { city, currentWeather, unit } = this.props;
+        const { city, currentWeather, unit } = this.state;
 
-        const tempUnits = (unit=="metric") ? "&#176;C" : "&#176;F";
-        const speedUnits = (unit=="metric") ? "m/s" : "mph";
+        const tempUnits = (unit==="metric") ? "&#176;C" : "&#176;F";
+        const speedUnits = (unit==="metric") ? "m/s" : "mph";
 
-        if(currentWeather){
+        if(this.state.currentWeather){
             return  [
             {
                 tag: 'table',
