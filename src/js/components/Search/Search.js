@@ -33,9 +33,6 @@ export default class Search extends  Component{
                 forecastWeather: subState[0][1],
                 unit: subState[1]};
         }
-console.log(newState);
-        // do update
-        // AppState.update('props',newState);
         let un = 'degrees centigrade';
         if (this.state.unit==='imperial'){
             un = 'degrees fahrenheit'
@@ -51,25 +48,22 @@ console.log(newState);
         this.state.unit = document.getElementById('switcher').getAttribute('data-unit');
         this.state.radioPlay = document.querySelector('.play').classList.contains('active');
         this.state.city = document.getElementById('search-weather').value;
-        console.log(this.state.city);
-        if(this.state.city){this.getCityForecast(this.state.city, this.state.unit).then((data)=>{
+
+        if(this.state.city){
+            WeatherDataService
+                .getAllWeatherInfo(this.state.city, this.state.unit)
+                .then(data => {
+                    if (!data) {
+                        return;
+                    }
+                    return AppState.update('props',[data,this.state.unit]);
+                }).then(()=>{
             addToStorage(this.state.city,'historyStorage');
         });
-        console.log(this.state);
 
 
         }}
 
-    getCityForecast(city, unit) {
-        return WeatherDataService
-            .getAllWeatherInfo(city, unit)
-            .then(data => {
-                if (!data) {
-                    return;
-                }
-                return AppState.update('props',[data,unit]);
-            })
-    }
 
 
     onInput(e) {
